@@ -40,6 +40,25 @@
             "problemMatcher": [
                 "$rustc"
             ]
-        }
+        },
+        {
+            "type": "cargo",
+            "command": "build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "build",
+            "label": "build with asm",
+            "args": [
+                "--target",
+                "atmega128rfa1.json",
+                "-Z",
+                "build-std=core",
+                "--release",
+                "--",
+                "--emit",
+                "asm"
+            ]
+        },
     ]
 }
