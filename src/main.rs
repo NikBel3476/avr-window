@@ -13,6 +13,7 @@ use avrd::atmega128rfa1::{
 	TCNT1
 };
 use core::ptr::{read_volatile, write_volatile};
+use avr_delay::delay_ms;
 
 #[no_mangle]
 pub extern fn main() {
@@ -25,7 +26,9 @@ pub extern fn main() {
 
 		loop {
 			write_volatile(PORTE, 0b00000001);
+			delay_ms(1000);
 			write_volatile(PORTE, 0b00000000);
+			delay_ms(1000);
 		}
 	}
 }

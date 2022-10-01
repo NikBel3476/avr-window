@@ -43,11 +43,10 @@
         },
         {
             "type": "cargo",
-            "command": "build",
+            "command": "rustc",
             "problemMatcher": [
                 "$rustc"
             ],
-            "group": "build",
             "label": "build with asm",
             "args": [
                 "--target",
