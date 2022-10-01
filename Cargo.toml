@@ -6,7 +6,7 @@ edition = '2021'
 [dependencies]
 avr-std-stub = "1.0"
 avr_delay = { git = "https://github.com/avr-rust/delay" }
-definitions = { path = "definitions" }
+avrd = "1.0"
 
 [profile.release]
 lto = true
