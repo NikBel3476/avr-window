@@ -78,9 +78,9 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.44"
+version = "1.0.46"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7bd7356a8122b6c4a24a82b278680c73357984ca2fc79a0f9fa6dea7dced7c58"
+checksum = "94e2ef8dbfc347b10c094890f778ee2e36ca9bb4262e86dc99cd217e35f3470b"
 dependencies = [
  "unicode-ident",
 ]
@@ -97,7 +97,7 @@ dependencies = [
 [[package]]
 name = "ruduino"
 version = "0.4.0"
-source = "git+https://github.com/NikBel3476/ruduino.git#534cec64f9ccd301731f60b9d0814e4032edbb78"
+source = "git+https://github.com/NikBel3476/ruduino.git#ac10eb9d91eb6b020f03cb82c424bb6f0b224d48"
 dependencies = [
  "avr-config",
  "avr-mcu",
