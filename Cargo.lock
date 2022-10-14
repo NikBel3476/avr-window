@@ -38,7 +38,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "avr_test"
+name = "avr_window"
 version = "0.1.0"
 dependencies = [
  "ruduino",
@@ -97,7 +97,7 @@ dependencies = [
 [[package]]
 name = "ruduino"
 version = "0.4.0"
-source = "git+https://github.com/NikBel3476/ruduino.git#ac10eb9d91eb6b020f03cb82c424bb6f0b224d48"
+source = "git+https://github.com/NikBel3476/ruduino#482ed54b12978274a0e4b3e85cc0ee2121f0a947"
 dependencies = [
  "avr-config",
  "avr-mcu",
