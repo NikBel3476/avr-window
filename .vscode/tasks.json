@@ -7,11 +7,10 @@
             "problemMatcher": [
                 "$rustc"
             ],
-            "group": "build",
             "label": "build",
             "args": [
                 "--target",
-                "atmega128rfa1.json",
+                "avr-atmega128rfa1.json",
                 "-Z",
                 "build-std=core",
                 "--release"
@@ -25,13 +24,14 @@
                 "-patmega128rfa1",
                 "-cusbasp",
                 "-Pusb",
-                "-b115200",
-                "-Uflash:w:target/atmega128rfa1/release/avr_test.elf:e"
+                "-b57600",
+                "-Uflash:w:target/avr-atmega128rfa1/release/avr_window.elf:e"
             ]
         },
         {
             "type": "shell",
             "label": "build and flush",
+            "group": "build",
             "dependsOn": [
                 "build",
                 "flush"

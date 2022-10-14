@@ -1,10 +1,10 @@
 [package]
-name = "avr_test"
+name = "avr_window"
 version = "0.1.0"
 edition = '2021'
 
 [dependencies]
-ruduino = { git = "https://github.com/NikBel3476/ruduino.git" }
+ruduino = { git = "https://github.com/NikBel3476/ruduino" }
 
 [profile.release]
 lto = true

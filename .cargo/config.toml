@@ -1,5 +1,5 @@
 [build]
-target = "atmega128rfa1.json"
+target = "avr-atmega128rfa1.json"
 
 [unstable]
 build-std = ["core"]

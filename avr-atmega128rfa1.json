@@ -13,19 +13,13 @@
     "exe-suffix": ".elf",
     "eh-frame-header": false,
     "pre-link-args": {
-        "gcc": [
-            "-Os",
-            "-mmcu=atmega128rfa1"
-        ]
+      "gcc": ["-mmcu=atmega128rfa1"]
     },
     "late-link-args": {
-        "gcc": [
-            "-lc",
-            "-lgcc"
-        ]
+      "gcc": ["-lgcc", "-lc"]
     },
     "target-c-int-width": "16",
     "target-endian": "little",
     "target-pointer-width": "16",
     "vendor": "unknown"
-}
+  }
