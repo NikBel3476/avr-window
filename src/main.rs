@@ -5,9 +5,15 @@
 use ruduino::{Pin};
 use ruduino::cores::current;
 use ruduino::cores::current::{port};
+use ruduino::legacy::serial;
 use ruduino::modules::{Timer16, WaveformGenerationMode16, ClockSource16};
 use ruduino::interrupt::without_interrupts;
 
+// uart
+const BAUD: u32 = 9600;
+const UBRR: u16 = (ruduino::config::CPU_FREQUENCY_HZ / 16 / BAUD - 1) as u16;
+
+// timer
 const DESIRED_HZ_TIM1: f64 = 1.0;
 const TIM1_PRESCALER: u64 = 1024;
 const INTERRUPT_EVERY_1_HZ_1024_PRESCALER: u16 =
@@ -21,6 +27,13 @@ pub extern fn main() {
 			.clock_source(ClockSource16::Prescale1024)
 			.output_compare_1(Some(INTERRUPT_EVERY_1_HZ_1024_PRESCALER))
 			.configure();
+
+		serial::Serial::new(UBRR)
+			.character_size(serial::CharacterSize::EightBits)
+			.mode(serial::Mode::Asynchronous)
+			.parity(serial::Parity::Disabled)
+			.stop_bits(serial::StopBits::OneBit)
+			.configure();
 	});
 
 	port::B5::set_output();
@@ -29,12 +42,21 @@ pub extern fn main() {
 	port::E0::set_high();
 
 	loop {
+		// transmitting data via uart
+		// for &b in b"Hello, from Rust!\n" {
+		// 	serial::transmit(b);
+		// }
 
+		// read byte if there is something available
+		// if let Some(b) = serial::try_receive() {
+		// 	serial::transmit(b);
+		// 	serial::transmit(b);
+		// }
 	}
 }
 
 #[no_mangle]
 pub unsafe extern "avr-interrupt" fn __vector_17() {
     port::B5::toggle();
-		port::E0::toggle();
+	port::E0::toggle();
 }
