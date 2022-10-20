@@ -2,9 +2,9 @@
 #![no_main]
 #![feature(abi_avr_interrupt)]
 
-use ruduino::{Pin};
+use ruduino::{Pin, Register};
 use ruduino::cores::current;
-use ruduino::cores::current::{port};
+use ruduino::cores::current::{port, DDRF, PORTF};
 use ruduino::legacy::serial;
 use ruduino::modules::{Timer16, WaveformGenerationMode16, ClockSource16};
 use ruduino::interrupt::without_interrupts;
@@ -40,18 +40,24 @@ pub extern fn main() {
 	port::B5::set_high();
 	port::E0::set_output();
 	port::E0::set_high();
+	// port::E1::set_output();
+
+	DDRF::set_mask_raw(0b11111111);
+	PORTF::set_mask_raw(0b0);
 
 	loop {
+		// serial::transmit(0b00001111);
+
 		// transmitting data via uart
 		// for &b in b"Hello, from Rust!\n" {
 		// 	serial::transmit(b);
 		// }
 
 		// read byte if there is something available
-		// if let Some(b) = serial::try_receive() {
-		// 	serial::transmit(b);
-		// 	serial::transmit(b);
-		// }
+		if let Some(b) = serial::try_receive() {
+			PORTF::write(0b0);
+			PORTF::set_mask_raw(b);
+		}
 	}
 }
 
