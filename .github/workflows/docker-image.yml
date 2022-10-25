@@ -15,9 +15,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: Prepare the AVR Rust build environment
       run:
-        docker build . --file Dockerfile.ci --tag avr-rust/blink.ci:$GITHUB_RUN_NUMBER
+        docker build . --file Dockerfile.ci --tag avr-rust/avr_window.ci:$GITHUB_RUN_NUMBER
 
     - name: Compile the crate
       run:
-        docker run avr-rust/blink.ci:$GITHUB_RUN_NUMBER
+        docker run avr-rust/avr_window.ci:$GITHUB_RUN_NUMBER
 

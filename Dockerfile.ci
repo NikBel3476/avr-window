@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 RUN useradd -m avr-rust
 
 # Install dependencies
-RUN apt-get update -y && apt-get install -y wget gcc binutils avr-gcc avr-libc
+RUN apt-get update -y && apt-get install -y wget gcc binutils gcc-avr avr-libc
 
 RUN mkdir -p /code && chown avr-rust:avr-rust /code
 
