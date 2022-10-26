@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Отчет по курсовой работе</h3>
+				</section>
+				<section>
+					<h3>Цель курсовой работы</h3>
+					<p>
+						Спроектировать устройство для автоматического
+						проветривания помещения путем открытия и закрытия окон
+						<span class="fragment strike">и дверей</span>
+					</p>
+				</section>
+				<section>
+					<h2>Задачи курсовой работы</h2>
+					<ol>
+						<li class="fragment">Спроектировать общую схему устройства</li>
+						<li class="fragment">Спроектировать механизм</li>
+						<li class="fragment">Написать программу для управления</li>
+						<li class="fragment">Собрать всё в готовое решение</li>
+					</ol>
+				</section>
+				<section>
+					<h3>Общая схема устройства</h3>
+					<div class="r-hstack" style="display: flex;">
+						<img class="fragment" src="assets/images/General-scheme1.png" alt="Общая схема часть 1"
+							data-fragment-index="1">
+						<img class="fragment" src="assets/images/General-scheme2.png" alt="Общая схема часть 2"
+							data-fragment-index="0">
+						<img class="fragment" src="assets/images/General-scheme3.png" alt="Общая схема часть 3"
+							data-fragment-index="2">
+					</div>
+				</section>
+				<section>
+					<h3>Управляющий механизм</h3>
+					<img src="" alt="Управляющий механизм">
+				</section>
+				<section>
+					<h3>Микроконтроллер</h3>
+					<img src="" alt="Микроконтроллер">
+				</section>
+				<section>
+					<h3>Программа для управления микроконтроллером</h3>
+					<p class="fragment" style="text-align: left">Задачи:</p>
+					<ul style="text-align: left">
+						<li class="fragment">Управлять механизмом открывания/закрывания</li>
+						<li class="fragment">Отсчитывать необходимое для проветривания время</li>
+						<li class="fragment">Обрабатывать сигналы с устройства передачи данных</li>
+						<li class="fragment"><span class="fragment strike">Обрабатывать сигналы с датчиков</span></li>
+					</ul>
+				</section>
+				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+					<h3>Язык программирования</h3>
+					<div class="r-hstack">
+						<img class="fragment"
+								 style="height: 20vh; margin: auto 20px auto 20px;" src="assets/images/Asm-logo.png"
+								 alt="Язык ассемблера">
+						<img class="fragment"
+								 style="height: 20vh; margin: auto 20px auto 20px;" src="assets/images/C-logo.png"
+								 alt="Язык программирования C">
+						<img class="fragment" data-id="rust-logo"
+								 style="height: 20vh; margin: auto 20px auto 20px; background-color: #fff;border-radius: 50%;"
+								 src="assets/images/Rust-logo.svg" alt="Язык программирования Rust">
+					</div>
+				</section>
+				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+					<img data-id="rust-logo"
+							 style="height: 30vh; background-color: #fff;border-radius: 50%;"
+							 src="assets/images/Rust-logo.svg" alt="Язык программирования Rust">
+				</section>
+				<section>
+					<h3>Библиотека для arduino</h3>
+					<img src="assets/images/Ruduino-repo.png" alt="Репозиторий библиотеки ruduino">
+					<p style="text-align: left; margin-left: 25px;">
+						<a href="https://github.com/avr-rust/ruduino">Ссылка на репозиторий</a>
+					</p>
+				</section>
+				<section>
+					<h4>Взаимодействие микроконтроллера с устройством передачи данных</h4>
+					<img src="assets/images/UART-connection.png"
+							 alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
+				</section>
+				<section>
+					<h3>Взаимодействие с устройством</h3>
+					<img src="assets/images/e32-connection.png" alt="Обмен данными между модулями e32-ttl-100">
+				</section>
+				<section>
+					<h3>Текущий код программы</h3>
+					<pre data-id="code-animation"><code class="" data-trim data-line-numbers="|5-6|9-11|14|15-22|24,34|26-28|31-33"><script type="text/template">
+						#![no_std]
+						#![no_main]
+						#![feature(abi_avr_interrupt)]
+
+						use ruduino::legacy::serial;
+						use ruduino::interrupt::without_interrupts;
+
+						// uart
+						const BAUD: u32 = 9600;
+						const UBRR: u16 =
+							(ruduino::config::CPU_FREQUENCY_HZ / 16 / BAUD - 1) as u16;
+
+						#[no_mangle]
+						pub extern fn main() {
+							without_interrupts(|| {
+								serial::Serial::new(UBRR)
+									.character_size(serial::CharacterSize::EightBits)
+									.mode(serial::Mode::Asynchronous)
+									.parity(serial::Parity::Disabled)
+									.stop_bits(serial::StopBits::OneBit)
+									.configure();
+							});
+
+							loop {
+								// transmitting data via uart
+								for &b in b"Hello, from Rust!\n" {
+									serial::transmit(b);
+								}
+
+								// read byte if there is something available
+								if let Some(b) = serial::try_receive() {
+									// do something with the byte
+								}
+							}
+						}
+					</script></code></pre>
+				</section>
+				<section>
+					<h2>Спасибо за внимание</h2>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/zoom/zoom.js"></script>
+		<script>
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+			});
+		</script>
+	</body>
+</html>
