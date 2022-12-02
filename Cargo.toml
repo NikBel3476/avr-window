@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = '2021'
 
 [dependencies]
-ruduino = { git = "https://github.com/NikBel3476/ruduino" }
+ruduino = { git = "https://github.com/NikBel3476/ruduino", branch = "master" }
 
 [profile.release]
 lto = true

@@ -97,7 +97,7 @@ dependencies = [
 [[package]]
 name = "ruduino"
 version = "0.4.0"
-source = "git+https://github.com/NikBel3476/ruduino#482ed54b12978274a0e4b3e85cc0ee2121f0a947"
+source = "git+https://github.com/NikBel3476/ruduino?branch=master#482ed54b12978274a0e4b3e85cc0ee2121f0a947"
 dependencies = [
  "avr-config",
  "avr-mcu",
