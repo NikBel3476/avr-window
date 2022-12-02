@@ -5,6 +5,17 @@ edition = '2021'
 
 [dependencies]
 ruduino = { git = "https://github.com/NikBel3476/ruduino", branch = "master" }
+ebyte-e32 = "0.9.0"
+
+[dependencies.atmega-hal]
+git = "https://github.com/Rahix/avr-hal.git"
+rev = "4170a773d4d76cc93433d2455ed8b14e573ebe70"
+features = ["atmega1280"]
+
+[dependencies.arduino-hal]
+git = "https://github.com/Rahix/avr-hal.git"
+rev = "4170a773d4d76cc93433d2455ed8b14e573ebe70"
+features = ["arduino-mega1280"]
 
 [profile.release]
 lto = true

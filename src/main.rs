@@ -2,12 +2,15 @@
 #![no_main]
 #![feature(abi_avr_interrupt)]
 
-use ruduino::{Pin, Register};
+use arduino_hal;
+use atmega_hal;
+use ebyte_e32;
 use ruduino::cores::current;
 use ruduino::cores::current::{port, DDRF, PORTF};
-use ruduino::legacy::serial;
-use ruduino::modules::{Timer16, WaveformGenerationMode16, ClockSource16};
 use ruduino::interrupt::without_interrupts;
+use ruduino::legacy::serial;
+use ruduino::modules::{ClockSource16, Timer16, WaveformGenerationMode16};
+use ruduino::{Pin, Register};
 
 // uart
 const BAUD: u32 = 9600;
@@ -17,13 +20,14 @@ const UBRR: u16 = (ruduino::config::CPU_FREQUENCY_HZ / 16 / BAUD - 1) as u16;
 const DESIRED_HZ_TIM1: f64 = 1.0;
 const TIM1_PRESCALER: u64 = 1024;
 const INTERRUPT_EVERY_1_HZ_1024_PRESCALER: u16 =
-    ((ruduino::config::CPU_FREQUENCY_HZ as f64 / (DESIRED_HZ_TIM1 * TIM1_PRESCALER as f64)) as u64 - 1) as u16;
+	((ruduino::config::CPU_FREQUENCY_HZ as f64 / (DESIRED_HZ_TIM1 * TIM1_PRESCALER as f64)) as u64
+		- 1) as u16;
 
 static mut IS_WINDOW_OPEN: bool = false;
 static mut IS_WINDOW_CLOSE: bool = true;
 
-#[no_mangle]
-pub extern fn main() {
+#[arduino_hal::entry]
+fn main() -> ! {
 	without_interrupts(|| {
 		current::Timer16::setup()
 			.waveform_generation_mode(WaveformGenerationMode16::ClearOnTimerMatchOutputCompare)
@@ -38,6 +42,12 @@ pub extern fn main() {
 			.stop_bits(serial::StopBits::OneBit)
 			.configure();
 	});
+
+	let dp = atmega_hal::Peripherals::take().unwrap();
+	let pins = atmega_hal::pins!(dp);
+
+	let mut led = pins.pb0.into_output().downgrade();
+	led.toggle();
 
 	port::B5::set_output();
 	port::B5::set_high();
@@ -96,6 +106,6 @@ pub extern fn main() {
 
 #[no_mangle]
 pub unsafe extern "avr-interrupt" fn __vector_17() {
-    port::B5::toggle();
+	port::B5::toggle();
 	port::E0::toggle();
 }
