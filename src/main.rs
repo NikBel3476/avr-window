@@ -3,8 +3,14 @@
 #![feature(abi_avr_interrupt)]
 
 use arduino_hal;
+use arduino_hal::prelude::*;
 use atmega_hal;
-use ebyte_e32;
+use atmega_hal::usart::{Baudrate, BaudrateExt};
+use ebyte_e32::{
+	mode::Normal,
+	parameters::{AirBaudRate, Persistence},
+	Ebyte,
+};
 use ruduino::cores::current;
 use ruduino::cores::current::{port, DDRF, PORTF};
 use ruduino::interrupt::without_interrupts;
@@ -48,6 +54,18 @@ fn main() -> ! {
 
 	let mut led = pins.pb0.into_output().downgrade();
 	led.toggle();
+
+	let serial = arduino_hal::Usart::new(
+		dp.USART1,
+		pins.pd2,
+		pins.pd3.into_output(),
+		BaudrateExt::into_baudrate(BAUD),
+	);
+
+	// TODO: init a ebyte module
+	// let mut ebyte = Ebyte::new(
+	// 	serial,
+	// );
 
 	port::B5::set_output();
 	port::B5::set_high();
