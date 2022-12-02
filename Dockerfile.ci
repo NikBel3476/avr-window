@@ -5,9 +5,9 @@ RUN useradd -m avr-rust
 # Install dependencies
 RUN apt update -y && apt install -y gcc binutils gcc-avr avr-libc
 
-RUN rustup toolchain install nightly-2022-07-10
+RUN rustup toolchain install nightly-2022-10-01
 
-RUN rustup component add rust-src --toolchain nightly-2022-07-10-unknown-linux-gnu
+RUN rustup component add rust-src --toolchain nightly-2022-10-01-unknown-linux-gnu
 
 RUN mkdir -p /usr/src/avr_window && chown avr-rust:avr-rust /usr/src/avr_window
 
