@@ -1,0 +1,1454 @@
+{
+    "name": "root",
+    "category": "",
+    "vars": [],
+    "nodes": [
+        {
+            "package": "AnimationFreeCAD",
+            "lib": null,
+            "type": "RectilinearTranslationNode",
+            "owningGraphName": "root",
+            "name": "RectilinearTranslationNode",
+            "uuid": "2332f66d-e275-4892-9774-40a37e2179ae",
+            "inputs": [
+                {
+                    "name": "Loop",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationNode_Loop",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "9728efe9-a3dd-4cc4-9ad0-9b346b9b1e74",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Loop",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Duration",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationNode_Duration",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "20.0",
+                    "uuid": "003df61c-9717-4a4f-b6ce-a74ab71d87e2",
+                    "linkedTo": [],
+                    "pinIndex": 7,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Duration",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Round trip",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationNode_Round trip",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "true",
+                    "uuid": "0b512036-eda2-49c6-977f-e8ebe79a02c2",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Round trip",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "End point",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationNode_End point",
+                    "dataType": "VectorPin",
+                    "direction": 0,
+                    "value": "{\"Vector\": [7.74, 139.77, 0.0]}",
+                    "uuid": "60a365a0-7128-4043-9c99-2b78b454f5e4",
+                    "linkedTo": [],
+                    "pinIndex": 6,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "End point",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Starting point",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationNode_Starting point",
+                    "dataType": "VectorPin",
+                    "direction": 0,
+                    "value": "{\"Vector\": [7.74, 1.57, 0.0]}",
+                    "uuid": "dbd37e91-7291-411f-b67b-63105779446e",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GetPosition",
+                            "outPinId": 1,
+                            "rhsNodeName": "RectilinearTranslationNode",
+                            "inPinId": 5,
+                            "lhsNodeUid": "c9d8fed2-b012-421a-983d-0848292d2b6e",
+                            "rhsNodeUid": "2332f66d-e275-4892-9774-40a37e2179ae"
+                        }
+                    ],
+                    "pinIndex": 5,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Starting point",
+                        "wires": {
+                            "5": {
+                                "sourceUUID": "a0806d85-3dd9-42b3-9a0c-ec5c9c7813a2",
+                                "destinationUUID": "dbd37e91-7291-411f-b67b-63105779446e",
+                                "sourceName": "GetPosition_Position",
+                                "destinationName": "RectilinearTranslationNode_Starting point",
+                                "uuid": "8c0055a5-fd0d-4f4e-8b6f-43e6472390ae",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Object",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationNode_Object",
+                    "dataType": "ObjectPin",
+                    "direction": 0,
+                    "value": "\"Gear_001\"",
+                    "uuid": "15b4ccc8-af2b-4d36-9c65-bc60c260ad6d",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationNode_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "ad089644-e768-448a-9da5-dbaeb25db2ac",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "StartNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "RectilinearTranslationNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "c1e46bcf-6bed-420a-95eb-6c432df0fbfb",
+                            "rhsNodeUid": "2332f66d-e275-4892-9774-40a37e2179ae"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "174b466d-2c43-40c5-92f9-ec9c1e5bd4dc",
+                                "destinationUUID": "ad089644-e768-448a-9da5-dbaeb25db2ac",
+                                "sourceName": "StartNode_outExec",
+                                "destinationName": "RectilinearTranslationNode_inExec",
+                                "uuid": "50832bd1-3cef-43be-acc8-7927a89bebe5",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Final position",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationNode_Final position",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [7.74, 139.77, 0.0]}",
+                    "uuid": "0a5ca8ba-3aef-480c-baea-a37efd7b0efa",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Final position",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationNode_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "6fb235e7-3951-468f-b82d-b944781e7393",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Object use",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationNode_Object use",
+                    "dataType": "ObjectPin",
+                    "direction": 1,
+                    "value": "\"Gear_001\"",
+                    "uuid": "18face3f-61a7-43da-8203-99fb49652b4d",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object use",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "RectilinearTranslationNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">RectilinearTranslationNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -54.02562095670973,
+            "y": -53.745040295466
+        },
+        {
+            "package": "AnimationFreeCAD",
+            "lib": null,
+            "type": "GetPosition",
+            "owningGraphName": "root",
+            "name": "GetPosition",
+            "uuid": "c9d8fed2-b012-421a-983d-0848292d2b6e",
+            "inputs": [
+                {
+                    "name": "Object",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "GetPosition_Object",
+                    "dataType": "ObjectPin",
+                    "direction": 0,
+                    "value": "\"Gear_001\"",
+                    "uuid": "8abd5971-6190-4772-b833-003dfb5eb6c8",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Position",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "GetPosition_Position",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [7.74, 1.57, 0.0]}",
+                    "uuid": "a0806d85-3dd9-42b3-9a0c-ec5c9c7813a2",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GetPosition",
+                            "outPinId": 1,
+                            "rhsNodeName": "RectilinearTranslationBySpeedNode",
+                            "inPinId": 5,
+                            "lhsNodeUid": "c9d8fed2-b012-421a-983d-0848292d2b6e",
+                            "rhsNodeUid": "b210688d-4342-4453-b497-e12276c712f5"
+                        },
+                        {
+                            "lhsNodeName": "GetPosition",
+                            "outPinId": 1,
+                            "rhsNodeName": "RectilinearTranslationNode",
+                            "inPinId": 5,
+                            "lhsNodeUid": "c9d8fed2-b012-421a-983d-0848292d2b6e",
+                            "rhsNodeUid": "2332f66d-e275-4892-9774-40a37e2179ae"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Position",
+                        "wires": {
+                            "5": {
+                                "sourceUUID": "a0806d85-3dd9-42b3-9a0c-ec5c9c7813a2",
+                                "destinationUUID": "2249b5ed-9c81-4bfa-9b66-c50f849240d6",
+                                "sourceName": "GetPosition_Position",
+                                "destinationName": "RectilinearTranslationBySpeedNode_Starting point",
+                                "uuid": "efb7cfcb-0b15-4daa-bb03-e7a5e6ed41de",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "GetPosition"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">GetPosition</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -245.7498504882255,
+            "y": -47.20198021520564
+        },
+        {
+            "package": "AnimationFreeCAD",
+            "lib": null,
+            "type": "StartNode",
+            "owningGraphName": "root",
+            "name": "StartNode",
+            "uuid": "c1e46bcf-6bed-420a-95eb-6c432df0fbfb",
+            "inputs": [
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "StartNode_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "d925da30-616b-4c95-91ff-f17ad194761d",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "StartNode_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "174b466d-2c43-40c5-92f9-ec9c1e5bd4dc",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "StartNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "RectilinearTranslationNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "c1e46bcf-6bed-420a-95eb-6c432df0fbfb",
+                            "rhsNodeUid": "2332f66d-e275-4892-9774-40a37e2179ae"
+                        },
+                        {
+                            "lhsNodeName": "StartNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "SpinAroundNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "c1e46bcf-6bed-420a-95eb-6c432df0fbfb",
+                            "rhsNodeUid": "a03c52ce-3b4f-4902-bbd4-5a0c82b4676b"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "174b466d-2c43-40c5-92f9-ec9c1e5bd4dc",
+                                "destinationUUID": "0fbd1ebc-e48c-45a2-b2b3-d57be452810c",
+                                "sourceName": "StartNode_outExec",
+                                "destinationName": "SpinAroundNode_inExec",
+                                "uuid": "c85dca01-967d-47a1-9ed3-f521a4357fa1",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "StartNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">StartNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -281.56526237281327,
+            "y": 45.81936205771778
+        },
+        {
+            "package": "AnimationFreeCAD",
+            "lib": null,
+            "type": "SpinAroundNode",
+            "owningGraphName": "root",
+            "name": "SpinAroundNode",
+            "uuid": "a03c52ce-3b4f-4902-bbd4-5a0c82b4676b",
+            "inputs": [
+                {
+                    "name": "Object",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundNode_Object",
+                    "dataType": "ObjectPin",
+                    "direction": 0,
+                    "value": "\"Gear_001\"",
+                    "uuid": "77393bea-5537-4ec4-b3c4-2f83c87ebd53",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "0fbd1ebc-e48c-45a2-b2b3-d57be452810c",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "StartNode",
+                            "outPinId": 1,
+                            "rhsNodeName": "SpinAroundNode",
+                            "inPinId": 1,
+                            "lhsNodeUid": "c1e46bcf-6bed-420a-95eb-6c432df0fbfb",
+                            "rhsNodeUid": "a03c52ce-3b4f-4902-bbd4-5a0c82b4676b"
+                        }
+                    ],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {
+                            "1": {
+                                "sourceUUID": "174b466d-2c43-40c5-92f9-ec9c1e5bd4dc",
+                                "destinationUUID": "0fbd1ebc-e48c-45a2-b2b3-d57be452810c",
+                                "sourceName": "StartNode_outExec",
+                                "destinationName": "SpinAroundNode_inExec",
+                                "uuid": "c85dca01-967d-47a1-9ed3-f521a4357fa1",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "Loop",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_Loop",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "b5fdf48c-a7b6-450f-a151-7c7f199e0408",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Loop",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Rotation axis",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundNode_Rotation axis",
+                    "dataType": "VectorPin",
+                    "direction": 0,
+                    "value": "{\"Vector\": [0.0, 0.0, 1.0]}",
+                    "uuid": "84d8b645-f3bd-4414-b05b-7db6c547a4e7",
+                    "linkedTo": [],
+                    "pinIndex": 5,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Rotation axis",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Angle at end of rotation",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_Angle at end of rotation",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "1068.0",
+                    "uuid": "330dbd88-25fc-4c83-9aee-ffca68b5007c",
+                    "linkedTo": [],
+                    "pinIndex": 7,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Angle at end of rotation",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Duration",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_Duration",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "20.0",
+                    "uuid": "990b72a0-bb22-45f1-a0b0-a82e49bad844",
+                    "linkedTo": [],
+                    "pinIndex": 8,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Duration",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Angle at start of rotation",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_Angle at start of rotation",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "12.0",
+                    "uuid": "4861605f-a0bc-4327-bf55-2d31874bfbaf",
+                    "linkedTo": [],
+                    "pinIndex": 6,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Angle at start of rotation",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Round trip",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_Round trip",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "true",
+                    "uuid": "d064e2ec-0c0a-459f-950c-2ae416c1df06",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Round trip",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Final position",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundNode_Final position",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [7.74, 1.57, 0.0]}",
+                    "uuid": "8c42a10a-f65f-4d69-8f68-ea56bf2cc607",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Final position",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Object use",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundNode_Object use",
+                    "dataType": "ObjectPin",
+                    "direction": 1,
+                    "value": "\"Gear_001\"",
+                    "uuid": "3dcfa52c-1836-46ee-acf4-cddd23c58d46",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object use",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "41321588-9865-4cca-a6d9-d7ff23cdce73",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "End angle",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundNode_End angle",
+                    "dataType": "FloatPin",
+                    "direction": 1,
+                    "value": "1068.0",
+                    "uuid": "ec340bde-e875-4cc8-8f0f-8960adecb978",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "End angle",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "SpinAroundNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">SpinAroundNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -70.66940179162187,
+            "y": 99.37884626946826
+        },
+        {
+            "package": "AnimationFreeCAD",
+            "lib": null,
+            "type": "SpinAroundBySpeedNode",
+            "owningGraphName": "root",
+            "name": "SpinAroundBySpeedNode",
+            "uuid": "cd77df70-d2ad-40c4-b72e-106e4252a41c",
+            "inputs": [
+                {
+                    "name": "Speed",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_Speed",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "24.0",
+                    "uuid": "679bfd2f-ea60-4de8-9d01-abd7298e72bb",
+                    "linkedTo": [],
+                    "pinIndex": 8,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Speed",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Rotation axis",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundBySpeedNode_Rotation axis",
+                    "dataType": "VectorPin",
+                    "direction": 0,
+                    "value": "{\"Vector\": [0.0, 0.0, 1.0]}",
+                    "uuid": "fb839f79-666b-4c55-9c11-a3250af6d589",
+                    "linkedTo": [],
+                    "pinIndex": 5,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Rotation axis",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Angle at start of rotation",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_Angle at start of rotation",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "12.0",
+                    "uuid": "d3bb7a0d-d94b-464e-80a3-79856ae62303",
+                    "linkedTo": [],
+                    "pinIndex": 6,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Angle at start of rotation",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Loop",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_Loop",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "4a6c1098-e630-4747-85eb-626b3df93a82",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Loop",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Object",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundBySpeedNode_Object",
+                    "dataType": "ObjectPin",
+                    "direction": 0,
+                    "value": "\"Gear_001\"",
+                    "uuid": "a9d370f2-a58d-4df8-b161-ddb11446db56",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "07779c05-e2ff-40c1-b3f9-8356532bd8b4",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Round trip",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_Round trip",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "1114e87b-9fdb-4e7a-922e-94c2cad19b7c",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Round trip",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Angle at end of rotation",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_Angle at end of rotation",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "1068.0",
+                    "uuid": "3c40a774-1ecf-4173-88a1-9b98abbb04bd",
+                    "linkedTo": [],
+                    "pinIndex": 7,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Angle at end of rotation",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "Final position",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundBySpeedNode_Final position",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [7.74, 139.77, 0.0]}",
+                    "uuid": "ef68fb71-9a7f-4ea1-aca5-ed4179597595",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Final position",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "End angle",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_End angle",
+                    "dataType": "FloatPin",
+                    "direction": 1,
+                    "value": "1068.0",
+                    "uuid": "83afc7b8-8adf-4687-9fe7-4003cbe241cd",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "End angle",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "SpinAroundBySpeedNode_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "b536e77e-4e49-450f-a5bb-930fc64cbb2f",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Object use",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "SpinAroundBySpeedNode_Object use",
+                    "dataType": "ObjectPin",
+                    "direction": 1,
+                    "value": "\"Gear_001\"",
+                    "uuid": "4881b0cd-df2b-4fac-966f-c38ee81ebcee",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object use",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "SpinAroundBySpeedNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">SpinAroundBySpeedNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -69.12198541029875,
+            "y": 272.2965155612116
+        },
+        {
+            "package": "AnimationFreeCAD",
+            "lib": null,
+            "type": "RectilinearTranslationBySpeedNode",
+            "owningGraphName": "root",
+            "name": "RectilinearTranslationBySpeedNode",
+            "uuid": "b210688d-4342-4453-b497-e12276c712f5",
+            "inputs": [
+                {
+                    "name": "End point",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationBySpeedNode_End point",
+                    "dataType": "VectorPin",
+                    "direction": 0,
+                    "value": "{\"Vector\": [7.74, 139.77, 0.0]}",
+                    "uuid": "798e7fa5-e789-4af0-94cd-9f5b24b03957",
+                    "linkedTo": [],
+                    "pinIndex": 6,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "End point",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Speed",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationBySpeedNode_Speed",
+                    "dataType": "FloatPin",
+                    "direction": 0,
+                    "value": "3.5189999999999997",
+                    "uuid": "5018a9f8-2550-467a-9310-4224711884aa",
+                    "linkedTo": [],
+                    "pinIndex": 7,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Speed",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Starting point",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationBySpeedNode_Starting point",
+                    "dataType": "VectorPin",
+                    "direction": 0,
+                    "value": "{\"Vector\": [7.74, 1.57, 0.0]}",
+                    "uuid": "2249b5ed-9c81-4bfa-9b66-c50f849240d6",
+                    "linkedTo": [
+                        {
+                            "lhsNodeName": "GetPosition",
+                            "outPinId": 1,
+                            "rhsNodeName": "RectilinearTranslationBySpeedNode",
+                            "inPinId": 5,
+                            "lhsNodeUid": "c9d8fed2-b012-421a-983d-0848292d2b6e",
+                            "rhsNodeUid": "b210688d-4342-4453-b497-e12276c712f5"
+                        }
+                    ],
+                    "pinIndex": 5,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Starting point",
+                        "wires": {
+                            "5": {
+                                "sourceUUID": "a0806d85-3dd9-42b3-9a0c-ec5c9c7813a2",
+                                "destinationUUID": "2249b5ed-9c81-4bfa-9b66-c50f849240d6",
+                                "sourceName": "GetPosition_Position",
+                                "destinationName": "RectilinearTranslationBySpeedNode_Starting point",
+                                "uuid": "efb7cfcb-0b15-4daa-bb03-e7a5e6ed41de",
+                                "hOffsetL": "0.0",
+                                "hOffsetR": "0.0",
+                                "hOffsetLSShape": "0.0",
+                                "hOffsetRSShape": "0.0",
+                                "vOffset": "0.0",
+                                "vOffsetSShape": "0.0",
+                                "snapVToFirst": 1,
+                                "snapVToSecond": 0
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "inExec",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationBySpeedNode_inExec",
+                    "dataType": "ExecPin",
+                    "direction": 0,
+                    "value": "null",
+                    "uuid": "7036d678-bd60-4059-b663-097864dcd441",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "inExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Round trip",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationBySpeedNode_Round trip",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "860f4f5c-98ca-4054-afa6-be599ebd2cf2",
+                    "linkedTo": [],
+                    "pinIndex": 4,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Round trip",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Object",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationBySpeedNode_Object",
+                    "dataType": "ObjectPin",
+                    "direction": 0,
+                    "value": "\"Gear_001\"",
+                    "uuid": "b29e0aae-25d5-49ab-a6f3-2d0450eb20c2",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Loop",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationBySpeedNode_Loop",
+                    "dataType": "BoolPin",
+                    "direction": 0,
+                    "value": "false",
+                    "uuid": "61c4b36a-c400-4c7d-8f1b-f768b4bc43f6",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Loop",
+                        "wires": {}
+                    }
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "outExec",
+                    "package": "PyFlowBase",
+                    "fullName": "RectilinearTranslationBySpeedNode_outExec",
+                    "dataType": "ExecPin",
+                    "direction": 1,
+                    "value": "null",
+                    "uuid": "c8a5cf54-6224-4f04-bdef-12a422aa953e",
+                    "linkedTo": [],
+                    "pinIndex": 1,
+                    "options": [
+                        8,
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "outExec",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Final position",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationBySpeedNode_Final position",
+                    "dataType": "VectorPin",
+                    "direction": 1,
+                    "value": "{\"Vector\": [7.74, 139.77, 0.0]}",
+                    "uuid": "28cc2449-f2df-48d2-ba3f-1dbd08c9f792",
+                    "linkedTo": [],
+                    "pinIndex": 3,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Final position",
+                        "wires": {}
+                    }
+                },
+                {
+                    "name": "Object use",
+                    "package": "AnimationFreeCAD",
+                    "fullName": "RectilinearTranslationBySpeedNode_Object use",
+                    "dataType": "ObjectPin",
+                    "direction": 1,
+                    "value": "\"Gear_001\"",
+                    "uuid": "07e1a216-62f3-4998-9cb2-4974dd7c9191",
+                    "linkedTo": [],
+                    "pinIndex": 2,
+                    "options": [
+                        256
+                    ],
+                    "structure": 0,
+                    "alwaysList": false,
+                    "alwaysSingle": false,
+                    "alwaysDict": false,
+                    "wrapper": {
+                        "bLabelHidden": false,
+                        "displayName": "Object use",
+                        "wires": {}
+                    }
+                }
+            ],
+            "meta": {
+                "var": {},
+                "label": "RectilinearTranslationBySpeedNode"
+            },
+            "wrapper": {
+                "collapsed": false,
+                "headerHtml": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Consolas'; font-size:6pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">RectilinearTranslationBySpeedNode</p></body></html>",
+                "exposeInputsToCompound": false,
+                "groups": {
+                    "input": {},
+                    "output": {}
+                }
+            },
+            "x": -51.921713876930845,
+            "y": -210.9319626250315
+        }
+    ],
+    "depth": 1,
+    "isRoot": true,
+    "parentGraphName": "None",
+    "fileVersion": "2.0.1",
+    "activeGraph": "root"
+}
