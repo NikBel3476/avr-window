@@ -59,8 +59,8 @@
 					<h3>Первый вариант</h3>
 					<p>Механизм на основе катушки с леской</p>
 					<div class="r-hstack" style="display: flex">
-						<img src="assets/images/Bobbin1.png" alt="Картинка катушки 1">
-						<img style="margin-left: 20px" src="assets/images/Bobbin2.png" alt="Картинка катушки 2">
+						<img src="assets/images/Bobbin1.png" alt="Изображение катушки 1">
+						<img style="margin-left: 20px" src="assets/images/Bobbin2.png" alt="Изображение катушки 2">
 					</div>
 				</section>
 				<section>
@@ -75,23 +75,19 @@
 					<p>Механизм на основе зубчатой рейки и шестерни</p>
 				</section>
 				<section>
-					<video src="assets/videos/gear.mp4" data-autoplay></video>
-<!--					<img style="width: 100%" src="assets/images/Animation.gif" alt="Анимация шестерни">-->
+					<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>
 				</section>
 				<section>
 					<h3>Преимущества перед первым вариантом</h3>
 					<ul style="text-align: left">
-						<li class="fragment">Можно легко как открывать, так и закрывать окно</li>
+						<li class="fragment">Можно как открывать, так и закрывать окно</li>
 						<li class="fragment">С помощью герконов можно регистрировать факт того, что окно закрыто, либо открыто</li>
 					</ul>
 				</section>
 				<section>
 					<h3>Микроконтроллер</h3>
 					<p>Atmega128rfa1</p>
-					<ul style="text-align: left">
-						<li class="fragment">128 Kb памяти</li>
-						<li class="fragment">2 UART интерфейса</li>
-					</ul>
+					<img style="height: 400px;" src="assets/images/atmega128rfa1.gif" alt="Пины микроконтроллера">
 				</section>
 				<section>
 					<h3>Программа для управления микроконтроллером</h3>
@@ -108,21 +104,26 @@
 								 src="assets/images/Rust-logo.svg"
 								 alt="Язык программирования Rust">
 				</section>
-				<section>
-					<h3>Использованная библиотека</h3>
-					<img src="assets/images/Ruduino-repo.png" alt="Репозиторий библиотеки ruduino">
-					<p style="text-align: left; margin-left: 25px;">
-						<a href="https://github.com/avr-rust/ruduino">Ссылка на репозиторий</a>
-					</p>
+				<section style="">
+					<h3>Использованные библиотеки</h3>
+					<div style="display: flex">
+						<figure style="margin: 0 10px; flex: 1 1 0;">
+							<img src="assets/images/Ruduino-repo.png" alt="Репозиторий Ruduino">
+							<figcaption>
+								<a href="https://github.com/avr-rust/ruduino">Ruduino</a>
+							</figcaption>
+						</figure>
+						<figure style="margin: 0 10px; flex: 1 1 0;">
+							<img src="assets/images/avr-hal.png" alt="Репозиторий avr-hal">
+							<figcaption>
+								<a href="https://github.com/avr-rust/ruduino">Avr-hal</a>
+							</figcaption>
+						</figure>
+					</div>
 				</section>
-				<section>
-					<h3>Текущая логика работы программы</h3>
-					<ol>
-						<li>Нажатие на кнопку -> окно открывается</li>
-						<li>Срабатывает геркон в конце рейки -> механизм останавливается</li>
-						<li>Нажатие на кнопку -> окно закрывается</li>
-						<li>Срабатывает геркон в начале рейки -> механизм останавливается</li>
-					</ol>
+				<section style="height: 100%">
+					<h5>Логика работы</h5>
+					<img style="height: 80%" src="assets/images/Flowchart.svg" alt="Блок схема">
 				</section>
 				<section>
 					<h4>Взаимодействие микроконтроллера с устройством передачи данных</h4>
@@ -134,11 +135,16 @@
 					<img src="assets/images/e32-connection.png" alt="Обмен данными между модулями e32-ttl-100">
 				</section>
 				<section>
+					<h3>Управление двигателем</h3>
+					<img style="width: 100%; background: #fff;" src="assets/images/H-bridge.svg" alt="H-мост">
+				</section>
+				<section>
 					<h3>Дальнейшие планы</h3>
 					<ul style="text-align: left">
 						<li>Доделать механизм</li>
 						<li>Спроектировать корпус</li>
 						<li>Добавить настройку времени</li>
+						<li>Добавить настройку адресов</li>
 					</ul>
 				</section>
 				<section>
@@ -154,6 +160,9 @@
 		<script src="plugin/zoom/zoom.js"></script>
 		<script>
 			Reveal.initialize({
+				width: 960,
+				height: 700,
+
 				controls: true,
 				progress: true,
 				center: true,
