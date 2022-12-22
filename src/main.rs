@@ -67,10 +67,10 @@ fn main() -> ! {
 	// 	serial,
 	// );
 
-	port::B5::set_output();
-	port::B5::set_high();
-	port::E0::set_output();
-	port::E0::set_high();
+	// port::B5::set_output();
+	// port::B5::set_high();
+	// port::E0::set_output();
+	// port::E0::set_high();
 
 	// pin for engine control
 	port::E2::set_output();
@@ -85,6 +85,11 @@ fn main() -> ! {
 	DDRF::set_mask_raw(0b11111111);
 	PORTF::set_mask_raw(0b0);
 
+	port::B6::set_output();
+	port::B5::set_output();
+	port::B6::set_high();
+	port::B5::set_low();
+
 	loop {
 		// serial::transmit(0b00001111);
 
@@ -98,7 +103,7 @@ fn main() -> ! {
 		}
 
 		if port::E4::is_high() {
-			port::E2::set_low()
+			port::E2::set_low();
 		}
 
 		unsafe {
@@ -106,11 +111,15 @@ fn main() -> ! {
 				IS_WINDOW_CLOSE = false;
 				IS_WINDOW_OPEN = true;
 				port::E2::set_low();
+				port::B6::set_low();
+				port::B5::set_high();
 			}
 			if IS_WINDOW_OPEN && port::E5::is_high() {
 				IS_WINDOW_OPEN = false;
 				IS_WINDOW_CLOSE = true;
 				port::E2::set_low();
+				port::B6::set_high();
+				port::B5::set_low();
 			}
 		}
 
@@ -124,6 +133,6 @@ fn main() -> ! {
 
 #[no_mangle]
 pub unsafe extern "avr-interrupt" fn __vector_17() {
-	port::B5::toggle();
+	// port::B5::toggle();
 	port::E0::toggle();
 }
