@@ -5,7 +5,7 @@
 use arduino_hal;
 use arduino_hal::prelude::*;
 use atmega_hal;
-use atmega_hal::usart::{Baudrate, BaudrateExt};
+use atmega_hal::usart::{BaudrateExt};
 use ebyte_e32::{
 	mode::Normal,
 	parameters::{AirBaudRate, Persistence},
@@ -34,33 +34,41 @@ static mut IS_WINDOW_CLOSE: bool = true;
 
 #[arduino_hal::entry]
 fn main() -> ! {
-	without_interrupts(|| {
-		current::Timer16::setup()
-			.waveform_generation_mode(WaveformGenerationMode16::ClearOnTimerMatchOutputCompare)
-			.clock_source(ClockSource16::Prescale1024)
-			.output_compare_1(Some(INTERRUPT_EVERY_1_HZ_1024_PRESCALER))
-			.configure();
+	// without_interrupts(|| {
+	// 	current::Timer16::setup()
+	// 		.waveform_generation_mode(WaveformGenerationMode16::ClearOnTimerMatchOutputCompare)
+	// 		.clock_source(ClockSource16::Prescale1024)
+	// 		.output_compare_1(Some(INTERRUPT_EVERY_1_HZ_1024_PRESCALER))
+	// 		.configure();
 
-		serial::Serial::new(UBRR)
-			.character_size(serial::CharacterSize::EightBits)
-			.mode(serial::Mode::Asynchronous)
-			.parity(serial::Parity::Disabled)
-			.stop_bits(serial::StopBits::OneBit)
-			.configure();
-	});
+	// 	serial::Serial::new(UBRR)
+	// 		.character_size(serial::CharacterSize::EightBits)
+	// 		.mode(serial::Mode::Asynchronous)
+	// 		.parity(serial::Parity::Disabled)
+	// 		.stop_bits(serial::StopBits::OneBit)
+	// 		.configure();
+	// });
 
 	let dp = atmega_hal::Peripherals::take().unwrap();
+
 	let pins = atmega_hal::pins!(dp);
 
-	let mut led = pins.pb0.into_output().downgrade();
-	led.toggle();
+	let mut serial1 = arduino_hal::Usart::new(
+		dp.USART0,
+		pins.pe0,
+		pins.pe1.into_output(),
+		BaudrateExt::into_baudrate(9600),
+	);
 
-	let serial = arduino_hal::Usart::new(
+	let mut serial2 = arduino_hal::Usart::new(
 		dp.USART1,
 		pins.pd2,
 		pins.pd3.into_output(),
-		BaudrateExt::into_baudrate(BAUD),
+		BaudrateExt::into_baudrate(9600),
 	);
+
+	// let mut led = pins.pb0.into_output().downgrade();
+	// led.toggle();
 
 	// TODO: init a ebyte module
 	// let mut ebyte = Ebyte::new(
@@ -72,22 +80,23 @@ fn main() -> ! {
 	// port::E0::set_output();
 	// port::E0::set_high();
 
-	// pin for engine control
+	// pin for engine control(relay)
 	port::E2::set_output();
 	port::E2::set_low();
 
 	//pins for buttons handling
-	port::E3::set_input();
-	port::E4::set_input();
-	port::E5::set_input();
-	port::E6::set_input();
+	port::E3::set_input(); // enable engine
+	port::E4::set_input(); // disable engine
+	port::E5::set_input(); // fist reed switch
+	port::E6::set_input(); // second reed switch
 
 	DDRF::set_mask_raw(0b11111111);
 	PORTF::set_mask_raw(0b0);
 
-	port::B6::set_output();
-	port::B5::set_output();
-	port::B6::set_high();
+	// engine rotation direction
+	port::B6::set_output(); // left
+	port::B5::set_output(); // right
+	port::B6::set_low();
 	port::B5::set_low();
 
 	loop {
@@ -97,6 +106,25 @@ fn main() -> ! {
 		// for &b in b"Hello, from Rust!\n" {
 		// 	serial::transmit(b);
 		// }
+
+		// Read a byte from the serial connection
+        if let Ok(b) = serial1.read() {
+			PORTF::write(b);
+
+			match b.to_ascii_lowercase() as char {
+				'h' => port::E2::set_low(),
+				'f' => port::E2::set_high(),
+				_ => {}
+			}
+		}
+
+		if let Ok(bluetooth_byte) = serial2.read() {
+			match bluetooth_byte.to_ascii_lowercase() as char {
+				'e' => port::E2::set_high(),
+				'd' => port::E2::set_low(),
+				_ => {}
+			}
+		};
 
 		if port::E3::is_high() {
 			port::E2::set_high();
@@ -124,15 +152,15 @@ fn main() -> ! {
 		}
 
 		// read byte if there is something available
-		if let Some(b) = serial::try_receive() {
-			PORTF::write(0b0);
-			PORTF::set_mask_raw(b);
-		}
+		// if let Some(b) = serial::try_receive() {
+		// 	PORTF::write(0b0);
+		// 	PORTF::set_mask_raw(b);
+		// }
 	}
 }
 
-#[no_mangle]
-pub unsafe extern "avr-interrupt" fn __vector_17() {
-	// port::B5::toggle();
-	port::E0::toggle();
-}
+// #[no_mangle]
+// pub unsafe extern "avr-interrupt" fn __vector_17() {
+// 	// port::B5::toggle();
+// 	port::E0::toggle();
+// }
