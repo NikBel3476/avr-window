@@ -2,6 +2,9 @@
 #![no_main]
 #![feature(abi_avr_interrupt)]
 
+use core::borrow::Borrow;
+use core::ptr::write_volatile;
+
 use arduino_hal;
 use arduino_hal::prelude::*;
 use atmega_hal;
@@ -81,23 +84,41 @@ fn main() -> ! {
 	// port::E0::set_high();
 
 	// pin for engine control(relay)
-	port::E2::set_output();
-	port::E2::set_low();
+	// port::E2::set_output();
+	// port::E2::set_low();
+	let mut relay = pins.pe2.into_output();
+	relay.set_low();
 
 	//pins for buttons handling
-	port::E3::set_input(); // enable engine
-	port::E4::set_input(); // disable engine
-	port::E5::set_input(); // fist reed switch
-	port::E6::set_input(); // second reed switch
+	// port::E3::set_input(); // enable engine
+	// port::E4::set_input(); // disable engine
+	// port::E5::set_input(); // first reed switch
+	// port::E6::set_input(); // second reed switch
 
-	DDRF::set_mask_raw(0b11111111);
-	PORTF::set_mask_raw(0b0);
+	let enable_engine_button = pins.pe3.into_floating_input();
+	let disable_engine_button = pins.pe4.into_floating_input();
+	let first_reed_switch = pins.pe5.into_floating_input();
+	let second_reed_switch = pins.pe6.into_floating_input();
+
+	// init leds for lora
+	unsafe {
+		(*arduino_hal::pac::PORTF::PTR).ddrf.write(|w| w.bits(0b11111111));
+		(*arduino_hal::pac::PORTF::PTR).portf.write(|w| w.bits(0));
+	}
+
+	// DDRF::set_mask_raw(0b11111111);
+	// PORTF::set_mask_raw(0b0);
 
 	// engine rotation direction
-	port::B6::set_output(); // left
-	port::B5::set_output(); // right
-	port::B6::set_low();
-	port::B5::set_low();
+	// port::B6::set_output(); // left
+	// port::B5::set_output(); // right
+	// port::B6::set_low();
+	// port::B5::set_low();
+
+	let mut engine_right = pins.pb5.into_output();
+	engine_right.set_low();
+	let mut engine_left = pins.pb6.into_output();
+	engine_left.set_low();
 
 	loop {
 		// serial::transmit(0b00001111);
@@ -109,45 +130,48 @@ fn main() -> ! {
 
 		// Read a byte from the serial connection
         if let Ok(b) = serial1.read() {
-			PORTF::write(b);
+			unsafe {
+				(*arduino_hal::pac::PORTF::PTR).portf.write(|w| w.bits(b));
+			}
+			// PORTF::write(b);
 
 			match b.to_ascii_lowercase() as char {
-				'h' => port::E2::set_low(),
-				'f' => port::E2::set_high(),
+				'h' => relay.set_low(),
+				'f' => relay.set_high(),
 				_ => {}
 			}
 		}
 
 		if let Ok(bluetooth_byte) = serial2.read() {
 			match bluetooth_byte.to_ascii_lowercase() as char {
-				'e' => port::E2::set_high(),
-				'd' => port::E2::set_low(),
+				'e' => relay.set_high(),
+				'd' => relay.set_low(),
 				_ => {}
 			}
 		};
 
-		if port::E3::is_high() {
-			port::E2::set_high();
+		if enable_engine_button.is_high() {
+			relay.set_high();
 		}
 
-		if port::E4::is_high() {
-			port::E2::set_low();
+		if disable_engine_button.is_high() {
+			relay.set_low();
 		}
 
 		unsafe {
-			if IS_WINDOW_CLOSE && port::E6::is_high() {
+			if IS_WINDOW_CLOSE && second_reed_switch.is_high() {
 				IS_WINDOW_CLOSE = false;
 				IS_WINDOW_OPEN = true;
-				port::E2::set_low();
-				port::B6::set_low();
-				port::B5::set_high();
+				relay.set_low();
+				engine_left.set_low();
+				engine_right.set_high();
 			}
-			if IS_WINDOW_OPEN && port::E5::is_high() {
+			if IS_WINDOW_OPEN && first_reed_switch.is_high() {
 				IS_WINDOW_OPEN = false;
 				IS_WINDOW_CLOSE = true;
-				port::E2::set_low();
-				port::B6::set_high();
-				port::B5::set_low();
+				relay.set_low();
+				engine_left.set_high();
+				engine_right.set_low();
 			}
 		}
 
@@ -163,4 +187,9 @@ fn main() -> ! {
 // pub unsafe extern "avr-interrupt" fn __vector_17() {
 // 	// port::B5::toggle();
 // 	port::E0::toggle();
+// }
+
+// #[avr_device::interrupt(atmega328p)]
+// fn TIMER1_COMPA() {
+    
 // }
