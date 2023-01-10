@@ -5,7 +5,7 @@ version = 3
 [[package]]
 name = "arduino-hal"
 version = "0.1.0"
-source = "git+https://github.com/Rahix/avr-hal.git?rev=4170a773d4d76cc93433d2455ed8b14e573ebe70#4170a773d4d76cc93433d2455ed8b14e573ebe70"
+source = "git+https://github.com/NikBel3476/avr-hal.git?branch=main#be3604f40e9665605b8e27509c8973631d986066"
 dependencies = [
  "atmega-hal",
  "avr-device",
@@ -19,19 +19,10 @@ dependencies = [
 [[package]]
 name = "atmega-hal"
 version = "0.1.0"
-source = "git+https://github.com/Rahix/avr-hal.git?rev=4170a773d4d76cc93433d2455ed8b14e573ebe70#4170a773d4d76cc93433d2455ed8b14e573ebe70"
+source = "git+https://github.com/NikBel3476/avr-hal.git?branch=main#be3604f40e9665605b8e27509c8973631d986066"
 dependencies = [
  "avr-device",
  "avr-hal-generic",
-]
-
-[[package]]
-name = "avr-config"
-version = "2.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "abb2276df19ea0f25741658d218861b8a24d78eaf926127eb2384f0927f9ab9f"
-dependencies = [
- "const_env--value",
 ]
 
 [[package]]
@@ -60,11 +51,12 @@ dependencies = [
 [[package]]
 name = "avr-hal-generic"
 version = "0.1.0"
-source = "git+https://github.com/Rahix/avr-hal.git?rev=4170a773d4d76cc93433d2455ed8b14e573ebe70#4170a773d4d76cc93433d2455ed8b14e573ebe70"
+source = "git+https://github.com/NikBel3476/avr-hal.git?branch=main#be3604f40e9665605b8e27509c8973631d986066"
 dependencies = [
  "avr-device",
  "cfg-if 0.1.10",
  "embedded-hal",
+ "embedded-storage",
  "nb 0.1.3",
  "paste",
  "rustversion",
@@ -73,40 +65,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "avr-mcu"
-version = "0.3.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "029b6df2c7d547a07eca1e2302ef423a0e1be7a61cae020c91eadf06ca354a7a"
-dependencies = [
- "json",
- "lazy_static",
- "target-cpu-fetch",
- "xmltree",
-]
-
-[[package]]
-name = "avr-std-stub"
-version = "1.0.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "839920177137ff472f3c35abf5b8166f331c6cf7f2dfa7ffd69f9aa7dc70b526"
-
-[[package]]
-name = "avr_delay"
-version = "0.4.2"
-source = "git+https://github.com/avr-rust/delay?rev=849918a8dfb2#849918a8dfb2f6211787bd8ff69c4083d685cf54"
-dependencies = [
- "avr-config",
-]
-
-[[package]]
 name = "avr_window"
 version = "0.1.0"
 dependencies = [
  "arduino-hal",
  "atmega-hal",
+ "avr-device",
  "ebyte-e32",
+ "embedded-hal",
  "nb 0.1.3",
- "ruduino",
+ "panic-halt",
+ "ufmt",
 ]
 
 [[package]]
@@ -128,26 +97,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "const_env--value"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ade503a5095050a5bf3feb8ae71842fb49dfc4af01dd613beb4f00bb7144645"
-dependencies = [
- "const_env_impl--value",
-]
-
-[[package]]
-name = "const_env_impl--value"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a046e06596453266c54d3eb790813fd047494fc1d04d5077fba628bf84e1b83a"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
 name = "doc-comment"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -156,8 +105,7 @@ checksum = "fea41bba32d969b513997752735605054bc0dfa92b4c56bf1189f2e174be7a10"
 [[package]]
 name = "ebyte-e32"
 version = "0.9.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1ef75c161dcac8bf8a444591ddf35cb5aeed4738d1f12dd5142f0c626bcf1fe5"
+source = "git+https://github.com/barafael/ebyte-e32-rs.git?branch=main#6462e7edb5b621af2dcdc7d30e49cf98670d2d64"
 dependencies = [
  "embedded-hal",
  "mutants",
@@ -177,22 +125,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "embedded-storage"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "723dce4e9f25b6e6c5f35628e144794e5b459216ed7da97b7c4b66cdb3fa82ca"
+
+[[package]]
 name = "heck"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2540771e65fc8cb83cd6e8a237f70c319bd5c29f78ed1084ba5d50eeac86f7f9"
-
-[[package]]
-name = "json"
-version = "0.12.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "078e285eafdfb6c4b434e0d31e8cfcb5115b651496faca5749b88fafd4f23bfd"
-
-[[package]]
-name = "lazy_static"
-version = "1.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "mutants"
@@ -214,6 +156,12 @@ name = "nb"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "546c37ac5d9e56f55e73b677106873d9d9f5190605e41a856503623648488cae"
+
+[[package]]
+name = "panic-halt"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de96540e0ebde571dc55c73d60ef407c653844e6f9a1e2fdbd40c07b9252d812"
 
 [[package]]
 name = "paste"
@@ -243,19 +191,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bbe448f377a7d6961e30f5955f9b8d106c3f5e449d493ee1b125c1d43c2b5179"
 dependencies = [
  "proc-macro2",
-]
-
-[[package]]
-name = "ruduino"
-version = "0.4.0"
-source = "git+https://github.com/NikBel3476/ruduino?branch=master#482ed54b12978274a0e4b3e85cc0ee2121f0a947"
-dependencies = [
- "avr-config",
- "avr-mcu",
- "avr-std-stub",
- "avr_delay",
- "const_env--value",
- "target-cpu-macro",
 ]
 
 [[package]]
@@ -295,25 +230,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "target-cpu-fetch"
-version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c620c949188981ea1071b1a280e1cfd7e4ca1394083a4a5b878714a351231031"
-dependencies = [
- "json",
-]
-
-[[package]]
-name = "target-cpu-macro"
-version = "0.1.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6a3fb73cc55bfda6bf277c6c84b03993c41f5068e0d53b74116a9aa9697760b"
-dependencies = [
- "json",
- "target-cpu-fetch",
 ]
 
 [[package]]
@@ -373,18 +289,3 @@ name = "void"
 version = "1.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a02e4885ed3bc0f2de90ea6dd45ebcbb66dacffe03547fadbb0eeae2770887d"
-
-[[package]]
-name = "xml-rs"
-version = "0.8.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d2d7d3948613f75c98fd9328cfdcc45acc4d360655289d0a7d4ec931392200a3"
-
-[[package]]
-name = "xmltree"
-version = "0.10.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d7d8a75eaf6557bb84a65ace8609883db44a29951042ada9b393151532e41fcb"
-dependencies = [
- "xml-rs",
-]
