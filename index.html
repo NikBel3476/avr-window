@@ -17,22 +17,30 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h3>Отчёт по курсовой работе</h3>
+					<div class="r-vstack">
+						<h3>Отчёт по курсовой работе</h3>
+						<p>Разработка системы автоматического управления положением подвижной створки окна</p>
+						<div style="text-align: right; margin-top: 5vh; align-self: flex-end;">
+							<p style="font-size: 0.5em;" class="r">Научный руководитель:</p>
+							<p style="font-size: 0.5em;">Чирков Борис Владимирович</p>
+							<p style="font-size: 0.5em;">Выполнил: Белкин Никита</p>
+							<p style="font-size: 0.5em;">Группа: ВМ-41</p>
+						</div>
+					</div>
 				</section>
 				<section>
 					<h3>Цель курсовой работы</h3>
 					<p>
-						Спроектировать устройство для автоматического
-						проветривания помещения путем открытия и закрытия окон
+						Спроектировать устройство для автоматического управления положением подвижной створки окна
 					</p>
 				</section>
 				<section>
-					<h2>Задачи курсовой работы</h2>
+					<h2>Основные задачи</h2>
 					<ol>
-						<li class="fragment">Спроектировать общую схему устройства</li>
-						<li class="fragment">Спроектировать механизм</li>
-						<li class="fragment">Написать программу для управления</li>
-						<li class="fragment">Собрать всё в готовое решение</li>
+						<li class="fragment fade-right">Спроектировать общую схему устройства</li>
+						<li class="fragment fade-right">Спроектировать механизм</li>
+						<li class="fragment fade-right">Написать программу для управления</li>
+						<li class="fragment fade-right">Собрать всё в готовое решение</li>
 					</ol>
 				</section>
 				<section>
@@ -48,11 +56,11 @@
 				</section>
 				<section>
 					<h3>Управляющий механизм</h3>
-					<p>Каким же он должен быть?</p>
+					<p>Свойства</p>
 					<ul style="text-align: left">
-						<li class="fragment">Простым</li>
-						<li class="fragment">Легко устанавливаться на окно</li>
-						<li class="fragment">Надёжным(по возможности)</li>
+						<li class="fragment fade-left">Простым</li>
+						<li class="fragment fade-left">Легко устанавливаться на окно</li>
+						<li class="fragment fade-left">Надёжным(по возможности)</li>
 					</ul>
 				</section>
 				<section>
@@ -66,16 +74,16 @@
 				<section>
 					<h3>Недостатки первого варианта</h3>
 					<ul style="text-align: left">
-						<li class="fragment">Как открыть окно?</li>
-						<li class="fragment">Как регистрировать момент полного открытия окна?</li>
+						<li class="fragment">Не все окна открываются под собственным весом</li>
+						<li class="fragment">Сложность регистрации момента открытия окна</li>
 					</ul>
 				</section>
 				<section>
 					<h3>Второй вариант</h3>
 					<p>Механизм на основе зубчатой рейки и шестерни</p>
 				</section>
-				<section>
-					<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>
+				<section data-background-video="assets/videos/gear.mp4">
+<!--					<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>-->
 				</section>
 				<section>
 					<h3>Преимущества перед первым вариантом</h3>
@@ -129,13 +137,11 @@
 					<h4>Взаимодействие микроконтроллера с устройством передачи данных</h4>
 					<img src="assets/images/UART-connection.png"
 							 alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
-				</section>
-				<section>
-					<h3>Взаимодействие с устройством</h3>
 					<img src="assets/images/e32-connection.png" alt="Обмен данными между модулями e32-ttl-100">
 				</section>
 				<section>
 					<h3>Управление двигателем</h3>
+					<h4>H-мост</h4>
 					<img style="width: 100%; background: #fff;" src="assets/images/H-bridge.svg" alt="H-мост">
 				</section>
 				<section>
@@ -167,8 +173,13 @@
 				progress: true,
 				center: true,
 				hash: true,
+				hideInactiveCursor: true,
+				hideCursorTime: 2000,
+				jumpToSlide: true,
 
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+				slideNumber: 'c/t',
+
+				plugins: [ RevealHighlight, RevealNotes, RevealZoom ]
 			});
 		</script>
 	</body>
