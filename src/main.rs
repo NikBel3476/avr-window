@@ -121,14 +121,13 @@ fn main() -> ! {
 	// 	(*arduino_hal::pac::PORTF::PTR).portf.write(|w| w.bits(0));
 	// }
 
-	let mut h_bridge = pins.pe2.into_output();
-	h_bridge.set_low();
+	/// engine rotation direction
+	/// low -> close; high -> open
+	let mut engine_direction = pins.pe2.into_output();
+	engine_direction.set_high();
 
-	// engine rotation direction
-	let mut engine_open = pins.pe3.into_output();
-	engine_open.set_low();
-	let mut engine_close = pins.pe4.into_output();
-	engine_close.set_low();
+	let mut engine_disable = pins.pe3.into_output();
+	engine_disable.set_high();
 
 	// reed switches
 	let close_reed_switch = pins.pe5.into_floating_input();
@@ -160,16 +159,14 @@ fn main() -> ! {
 			match byte.to_ascii_lowercase() as char {
 				'o' => unsafe {
 					if WINDOW_IS_CLOSE.load(Ordering::SeqCst) {
-						h_bridge.set_high();
-						engine_open.set_high();
-						engine_close.set_low();
+						engine_direction.set_high();
+						engine_disable.set_low();
 					}
 				}
 				'c' => unsafe {
 					if WINDOW_IS_OPEN.load(Ordering::SeqCst) {
-						h_bridge.set_high();
-						engine_close.set_high();
-						engine_open.set_low();
+						engine_direction.set_low();
+						engine_disable.set_low();
 					}
 				}
 				_ => {}
@@ -257,14 +254,14 @@ fn main() -> ! {
 			if WINDOW_IS_CLOSE.load(Ordering::SeqCst) && open_reed_switch.is_high() {
 				WINDOW_IS_CLOSE.store(false, Ordering::SeqCst);
 				WINDOW_IS_OPEN.store(true, Ordering::SeqCst);
-				engine_open.set_low();
-				h_bridge.set_low();
+				engine_disable.set_high();
+				engine_direction.set_high();
 			}
 			if WINDOW_IS_OPEN.load(Ordering::SeqCst) && close_reed_switch.is_high() {
 				WINDOW_IS_OPEN.store(false, Ordering::SeqCst);
 				WINDOW_IS_CLOSE.store(true, Ordering::SeqCst);
-				engine_close.set_low();
-				h_bridge.set_low();
+				engine_disable.set_high();
+				engine_direction.set_high();
 			}
 		}
 
