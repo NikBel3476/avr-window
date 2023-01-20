@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -40,26 +40,25 @@
 						<li class="fragment fade-right">Спроектировать общую схему устройства</li>
 						<li class="fragment fade-right">Спроектировать механизм</li>
 						<li class="fragment fade-right">Написать программу для управления</li>
-						<li class="fragment fade-right">Собрать всё в готовое решение</li>
 					</ol>
 				</section>
 				<section>
 					<h3>Общая схема устройства</h3>
 					<div class="r-hstack" style="display: flex;">
 						<img class="fragment" src="assets/images/General-scheme1.png" alt="Общая схема часть 1"
-							data-fragment-index="1">
+								 data-fragment-index="1">
 						<img class="fragment" src="assets/images/General-scheme2.png" alt="Общая схема часть 2"
-							data-fragment-index="0">
+								 data-fragment-index="0">
 						<img class="fragment" src="assets/images/General-scheme3.png" alt="Общая схема часть 3"
-							data-fragment-index="2">
+								 data-fragment-index="2">
 					</div>
 				</section>
 				<section>
 					<h3>Управляющий механизм</h3>
 					<p>Свойства</p>
 					<ul style="text-align: left">
-						<li class="fragment fade-left">Простым</li>
-						<li class="fragment fade-left">Легко устанавливаться на окно</li>
+						<li class="fragment fade-left">Простота</li>
+						<li class="fragment fade-left">Легкая установка на окно</li>
 						<li class="fragment fade-left">Надёжным(по возможности)</li>
 					</ul>
 				</section>
@@ -83,7 +82,7 @@
 					<p>Механизм на основе зубчатой рейки и шестерни</p>
 				</section>
 				<section data-background-video="assets/videos/gear.mp4">
-<!--					<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>-->
+					<!--					<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>-->
 				</section>
 				<section>
 					<h3>Преимущества перед первым вариантом</h3>
@@ -108,9 +107,9 @@
 				</section>
 				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
 					<h3>Язык программирования</h3>
-						<img style="height: 20vh; margin: auto 20px auto 20px; background-color: #fff;border-radius: 50%;"
-								 src="assets/images/Rust-logo.svg"
-								 alt="Язык программирования Rust">
+					<img style="height: 20vh; margin: auto 20px auto 20px; background-color: #fff;border-radius: 50%;"
+							 src="assets/images/Rust-logo.svg"
+							 alt="Язык программирования Rust">
 				</section>
 				<section style="">
 					<h3>Использованные библиотеки</h3>
@@ -165,6 +164,9 @@
 		<script src="plugin/highlight/highlight.js"></script>
 		<script src="plugin/zoom/zoom.js"></script>
 		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
 			Reveal.initialize({
 				width: 960,
 				height: 700,
@@ -179,6 +181,7 @@
 
 				slideNumber: 'c/t',
 
+				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealHighlight, RevealNotes, RevealZoom ]
 			});
 		</script>
