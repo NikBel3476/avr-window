@@ -23,23 +23,23 @@
 						<div style="text-align: right; margin-top: 5vh; align-self: flex-end;">
 							<p style="font-size: 0.5em;" class="r">Научный руководитель:</p>
 							<p style="font-size: 0.5em;">Чирков Борис Владимирович</p>
-							<p style="font-size: 0.5em;">Выполнил: Белкин Никита</p>
-							<p style="font-size: 0.5em;">Группа: ВМ-41</p>
+							<p style="font-size: 0.5em;">Выполнил:</p>
+							<p style="font-size: 0.5em;">Белкин Н.В. Группа: ВМ-41</p>
 						</div>
 					</div>
 				</section>
-				<section>
+				<section data-auto-animate>
 					<h3>Цель курсовой работы</h3>
 					<p>
 						Спроектировать устройство для автоматического управления положением подвижной створки окна
 					</p>
 				</section>
-				<section>
+				<section data-auto-animate>
 					<h2>Основные задачи</h2>
-					<ol>
-						<li class="fragment fade-right">Спроектировать общую схему устройства</li>
-						<li class="fragment fade-right">Спроектировать механизм</li>
-						<li class="fragment fade-right">Написать программу для управления</li>
+					<ol class="fragment fade-right">
+						<li>Спроектировать общую схему устройства</li>
+						<li>Спроектировать механизм</li>
+						<li>Написать программу для управления</li>
 					</ol>
 				</section>
 				<section>
@@ -56,10 +56,10 @@
 				<section>
 					<h3>Управляющий механизм</h3>
 					<p>Свойства</p>
-					<ul style="text-align: left">
-						<li class="fragment fade-left">Простота</li>
-						<li class="fragment fade-left">Легкая установка на окно</li>
-						<li class="fragment fade-left">Надёжным(по возможности)</li>
+					<ul class="fragment fade-left" style="text-align: left">
+						<li>Простота</li>
+						<li>Легкая установка на окно</li>
+						<li>Надёжным(по возможности)</li>
 					</ul>
 				</section>
 				<section>
@@ -90,7 +90,7 @@
 					<h3>Преимущества перед первым вариантом</h3>
 					<ul style="text-align: left">
 						<li class="fragment">Можно как открывать, так и закрывать окно</li>
-						<li class="fragment">С помощью герконов можно регистрировать факт того, что окно закрыто, либо открыто</li>
+						<li class="fragment">Проще регистрировать факт того, что окно закрыто, либо открыто</li>
 					</ul>
 				</section>
 				<section>
@@ -100,11 +100,11 @@
 				</section>
 				<section>
 					<h3>Программа для управления микроконтроллером</h3>
-					<p class="fragment" style="text-align: left">Задачи:</p>
-					<ul style="text-align: left">
-						<li class="fragment">Управлять механизмом открывания/закрывания</li>
-						<li class="fragment">Отсчитывать необходимое для проветривания время</li>
-						<li class="fragment">Обрабатывать сигналы с устройства передачи данных</li>
+					<p style="text-align: left">Задачи:</p>
+					<ul class="fragment" style="text-align: left">
+						<li>Управлять механизмом открывания/закрывания</li>
+						<li>Регистрировать сигналы с датчиков</li>
+						<li>Обрабатывать сигналы с устройства передачи данных</li>
 					</ul>
 				</section>
 				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
@@ -145,13 +145,18 @@
 					<h4>H-мост</h4>
 					<img style="width: 100%; background: #fff;" src="assets/images/H-bridge.svg" alt="H-мост">
 				</section>
+				<section data-background-image="assets/images/General-scheme-simulIDE.png" data-background-size="contain">
+				</section>
 				<section>
-					<h3>Дальнейшие планы</h3>
+					<h3>Получившийся результат</h3>
 					<ul style="text-align: left">
-						<li>Доделать механизм</li>
-						<li>Спроектировать корпус</li>
-						<li>Добавить настройку времени</li>
-						<li>Добавить настройку адресов</li>
+						<li>Был создан минимально работоспособный прототип</li>
+					</ul>
+					<p style="text-align: left;">Нерешённые проблемы:</p>
+					<ul>
+						<li>Ложные срабатывания реле, из-за чего створка не доходит до конечного положения</li>
+						<li>Нет сильного прижима окна в закрытом положении</li>
+						<li>Нет питания от аккумуляторов</li>
 					</ul>
 				</section>
 				<section>
