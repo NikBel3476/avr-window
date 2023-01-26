@@ -41,7 +41,8 @@ use panic_halt as _;
 
 static mut WINDOW_IS_OPEN: AtomicBool = AtomicBool::new(false);
 static mut WINDOW_IS_CLOSE: AtomicBool = AtomicBool::new(true);
-static mut LED: mem::MaybeUninit<Pin<Output, port::PB5>> = mem::MaybeUninit::uninit();
+static mut WINDOW_IS_MOVING: AtomicBool = AtomicBool::new(false);
+// static mut LED: mem::MaybeUninit<Pin<Output, port::PB5>> = mem::MaybeUninit::uninit();
 
 #[arduino_hal::entry]
 fn main() -> ! {
@@ -159,16 +160,18 @@ fn main() -> ! {
 			match byte.to_ascii_lowercase() as char {
 				'o' => unsafe {
 					if WINDOW_IS_CLOSE.load(Ordering::SeqCst) {
+						WINDOW_IS_MOVING.store(true, Ordering::SeqCst);
 						engine_direction.set_high();
 						engine_disable.set_low();
 					}
-				}
+				},
 				'c' => unsafe {
 					if WINDOW_IS_OPEN.load(Ordering::SeqCst) {
+						WINDOW_IS_MOVING.store(true, Ordering::SeqCst);
 						engine_direction.set_low();
 						engine_disable.set_low();
 					}
-				}
+				},
 				_ => {}
 			}
 		}
@@ -252,16 +255,25 @@ fn main() -> ! {
 
 		unsafe {
 			if WINDOW_IS_CLOSE.load(Ordering::SeqCst) && open_reed_switch.is_high() {
-				WINDOW_IS_CLOSE.store(false, Ordering::SeqCst);
-				WINDOW_IS_OPEN.store(true, Ordering::SeqCst);
-				engine_disable.set_high();
-				engine_direction.set_high();
+				delay_ms(10);
+				if open_reed_switch.is_high() {
+					WINDOW_IS_CLOSE.store(false, Ordering::SeqCst);
+					WINDOW_IS_OPEN.store(true, Ordering::SeqCst);
+					WINDOW_IS_MOVING.store(false, Ordering::SeqCst);
+					engine_disable.set_high();
+					engine_direction.set_high();
+				}
 			}
+
 			if WINDOW_IS_OPEN.load(Ordering::SeqCst) && close_reed_switch.is_high() {
-				WINDOW_IS_OPEN.store(false, Ordering::SeqCst);
-				WINDOW_IS_CLOSE.store(true, Ordering::SeqCst);
-				engine_disable.set_high();
-				engine_direction.set_high();
+				delay_ms(10);
+				if close_reed_switch.is_high() {
+					WINDOW_IS_OPEN.store(false, Ordering::SeqCst);
+					WINDOW_IS_CLOSE.store(true, Ordering::SeqCst);
+					WINDOW_IS_MOVING.store(false, Ordering::SeqCst);
+					engine_disable.set_high();
+					engine_direction.set_high();
+				}
 			}
 		}
 
