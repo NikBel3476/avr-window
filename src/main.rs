@@ -71,7 +71,7 @@ fn main() -> ! {
 
 	let pins = atmega_hal::pins!(dp);
 
-	let mut serial1 = atmega_hal::Usart::new(
+	let mut serial1 = arduino_hal::Usart::new(
 		dp.USART0,
 		pins.pe0,
 		pins.pe1.into_output(),
