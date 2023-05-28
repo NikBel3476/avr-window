@@ -39,6 +39,12 @@ use panic_halt as _;
 // 	((ruduino::config::CPU_FREQUENCY_HZ as f64 / (DESIRED_HZ_TIM1 * TIM1_PRESCALER as f64)) as u64
 // 		- 1) as u16;
 
+// enum WINDOW_STATE {
+// 	Open,
+// 	Close,
+// 	Moving
+// }
+
 static mut WINDOW_IS_OPEN: AtomicBool = AtomicBool::new(false);
 static mut WINDOW_IS_CLOSE: AtomicBool = AtomicBool::new(true);
 static mut WINDOW_IS_MOVING: AtomicBool = AtomicBool::new(false);
@@ -65,7 +71,7 @@ fn main() -> ! {
 
 	let pins = atmega_hal::pins!(dp);
 
-	let mut serial1 = arduino_hal::Usart::new(
+	let mut serial1 = atmega_hal::Usart::new(
 		dp.USART0,
 		pins.pe0,
 		pins.pe1.into_output(),
@@ -130,9 +136,9 @@ fn main() -> ! {
 	let mut engine_disable = pins.pe3.into_output();
 	engine_disable.set_high();
 
-	// reed switches
-	let close_reed_switch = pins.pe5.into_floating_input();
-	let open_reed_switch = pins.pe6.into_floating_input();
+	// open/close sensors
+	let close_sensor = pins.pe5.into_floating_input();
+	let open_sensor = pins.pe6.into_floating_input();
 
 	// add uart tx interrupt
 	// serial.listen(atmega_hal::usart::Event::TxComplete);
@@ -254,9 +260,9 @@ fn main() -> ! {
 		// }
 
 		unsafe {
-			if WINDOW_IS_CLOSE.load(Ordering::SeqCst) && open_reed_switch.is_high() {
+			if WINDOW_IS_CLOSE.load(Ordering::SeqCst) && open_sensor.is_high() {
 				delay_ms(10);
-				if open_reed_switch.is_high() {
+				if open_sensor.is_high() {
 					WINDOW_IS_CLOSE.store(false, Ordering::SeqCst);
 					WINDOW_IS_OPEN.store(true, Ordering::SeqCst);
 					WINDOW_IS_MOVING.store(false, Ordering::SeqCst);
@@ -265,9 +271,9 @@ fn main() -> ! {
 				}
 			}
 
-			if WINDOW_IS_OPEN.load(Ordering::SeqCst) && close_reed_switch.is_high() {
+			if WINDOW_IS_OPEN.load(Ordering::SeqCst) && close_sensor.is_high() {
 				delay_ms(10);
-				if close_reed_switch.is_high() {
+				if close_sensor.is_high() {
 					WINDOW_IS_OPEN.store(false, Ordering::SeqCst);
 					WINDOW_IS_CLOSE.store(true, Ordering::SeqCst);
 					WINDOW_IS_MOVING.store(false, Ordering::SeqCst);
