@@ -7,8 +7,9 @@ use arduino_hal::{
 	hal::port,
 	port::{mode::Output, Pin},
 	prelude::*,
+	pac::{TC1, tc1::tccr1b::CS1_A}
 };
-use atmega_hal::usart::BaudrateExt;
+use atmega_hal::{usart::BaudrateExt};
 use core::{
 	mem,
 	sync::atomic::{AtomicBool, Ordering},
@@ -18,7 +19,7 @@ use ebyte_e32::{
 	parameters::{AirBaudRate, Persistence},
 	Ebyte,
 };
-use embedded_hal::digital::v2::InputPin;
+use embedded_hal::{digital::v2::InputPin};
 use nb::block;
 use panic_halt as _;
 // use ruduino::cores::current;
@@ -32,7 +33,7 @@ use panic_halt as _;
 // const BAUD: u32 = 9600;
 // const UBRR: u16 = (ruduino::config::CPU_FREQUENCY_HZ / 16 / BAUD - 1) as u16;
 
-// // timer
+// timer
 // const DESIRED_HZ_TIM1: f64 = 1.0;
 // const TIM1_PRESCALER: u64 = 1024;
 // const INTERRUPT_EVERY_1_HZ_1024_PRESCALER: u16 =
@@ -45,10 +46,17 @@ use panic_halt as _;
 // 	Moving
 // }
 
+// struct GlobalState {
+// 	time: u32,
+// 	serial0: *mut Usart<Atmega, USART0, Pin<Input, PE0>, Pin<Output, PE1>, MHz16>
+// }
+
 static mut WINDOW_IS_OPEN: AtomicBool = AtomicBool::new(false);
 static mut WINDOW_IS_CLOSE: AtomicBool = AtomicBool::new(true);
 static mut WINDOW_IS_MOVING: AtomicBool = AtomicBool::new(false);
 // static mut LED: mem::MaybeUninit<Pin<Output, port::PB5>> = mem::MaybeUninit::uninit();
+// static mut GLOBAL_STATE: mem::MaybeUninit<GlobalState> = mem::MaybeUninit::uninit();
+static mut GLOBAL_TIME_IN_SEC: u32 = 0;
 
 #[arduino_hal::entry]
 fn main() -> ! {
@@ -77,6 +85,18 @@ fn main() -> ! {
 		pins.pe1.into_output(),
 		BaudrateExt::into_baudrate(9600),
 	);
+
+	// unsafe {
+	// 	// SAFETY: Interrupts are not enabled at this point so we can safely write the global
+	// 	// variable here.  A memory barrier afterwards ensures the compiler won't reorder this
+	// 	// after any operation that enables interrupts.
+	// 	INTERRUPT_STATE = mem::MaybeUninit::new(InterruptState {
+	// 			time: 0
+	// 	});
+	// 	core::sync::atomic::compiler_fence(core::sync::atomic::Ordering::SeqCst);
+	// }
+
+	let timer1 = dp.TC1;
 
 	// let mut serial2 = arduino_hal::Usart::new(
 	// 	dp.USART1,
@@ -128,8 +148,8 @@ fn main() -> ! {
 	// 	(*arduino_hal::pac::PORTF::PTR).portf.write(|w| w.bits(0));
 	// }
 
-	/// engine rotation direction
-	/// low -> close; high -> open
+	// engine rotation direction
+	// low -> close; high -> open
 	let mut engine_direction = pins.pe2.into_output();
 	engine_direction.set_high();
 
@@ -140,11 +160,13 @@ fn main() -> ! {
 	let close_sensor = pins.pe5.into_floating_input();
 	let open_sensor = pins.pe6.into_floating_input();
 
+	reg_timer(&timer1);
+
 	// add uart tx interrupt
-	// serial.listen(atmega_hal::usart::Event::TxComplete);
-	// unsafe {
-	// 	avr_device::interrupt::enable();
-	// }
+	// serial1.listen(atmega_hal::usart::Event::TxComplete);
+	unsafe {
+		avr_device::interrupt::enable();
+	}
 
 	loop {
 		// serial::transmit(0b00001111);
@@ -159,10 +181,10 @@ fn main() -> ! {
 		// 	unsafe {
 		// 		(*arduino_hal::pac::PORTF::PTR).portf.write(|w| w.bits(b));
 		// 	}
-		// 	// PORTF::write(b);
+			// PORTF::write(b);
 
 		if let Ok(byte) = serial1.read() {
-			serial1.write_byte(byte);
+			// serial1.write_byte(byte);
 			match byte.to_ascii_lowercase() as char {
 				'o' => unsafe {
 					if WINDOW_IS_CLOSE.load(Ordering::SeqCst) {
@@ -178,6 +200,20 @@ fn main() -> ! {
 						engine_disable.set_low();
 					}
 				},
+				's' => unsafe {
+					if WINDOW_IS_OPEN.load(Ordering::SeqCst) && !WINDOW_IS_CLOSE.load(Ordering::SeqCst) {
+						serial1.write_byte('o' as u8);
+					}
+					if !WINDOW_IS_OPEN.load(Ordering::SeqCst) && WINDOW_IS_CLOSE.load(Ordering::SeqCst) {
+						serial1.write_byte('c' as u8);
+					}
+				},
+				't' => unsafe {
+						serial1.write_byte('t' as u8);
+					for byte in GLOBAL_TIME_IN_SEC.to_be_bytes() {
+						serial1.write_byte(byte);
+					}
+				}
 				_ => {}
 			}
 		}
@@ -291,10 +327,60 @@ fn main() -> ! {
 	}
 }
 
+pub const fn calc_overflow(clock_hz: u32, target_hz: u32, prescale: u32) -> u32 {
+	/*
+	https://github.com/Rahix/avr-hal/issues/75
+	reversing the formula F = 16 MHz / (256 * (1 + 15624)) = 4 Hz
+	 */
+	clock_hz / target_hz / prescale - 1
+}
+
+pub fn reg_timer(timer1: &TC1) {
+	use arduino_hal::clock::Clock;
+
+	const ATMEGA_CLOCK_FREQUENCY: u32 = arduino_hal::DefaultClock::FREQ;
+	const CLOCK_SOURCE: CS1_A = CS1_A::PRESCALE_1024;
+	let clock_divisor: u32 = match CLOCK_SOURCE {
+		CS1_A::DIRECT => 1,
+		CS1_A::PRESCALE_8 => 8,
+		CS1_A::PRESCALE_64 => 64,
+		CS1_A::PRESCALE_256 => 256,
+		CS1_A::PRESCALE_1024 => 1024,
+		_ => 1024
+		// CS1_A::NO_CLOCK | CS1_A::EXT_FALLING | CS1_A::EXT_RISING => {
+		// 		uwriteln!(serial, "uhoh, code tried to set the clock source to something other than a static prescaler {}", CLOCK_SOURCE as usize)
+		// 				.void_unwrap();
+		// 		1
+		// }
+	};
+
+	let ticks = calc_overflow(ATMEGA_CLOCK_FREQUENCY, 1, clock_divisor) as u16;
+
+	timer1.tccr1a.write(|w| w.wgm1().bits(0b00));
+	timer1.tccr1b.write(|w| {
+			w.cs1()
+					//.prescale_256()
+					.variant(CLOCK_SOURCE)
+					.wgm1()
+					.bits(0b01)
+	});
+	timer1.ocr1a.write(|w| w.bits(ticks));
+	timer1.timsk1.write(|w| w.ocie1a().set_bit()); //enable this specific interrupt
+}
+
+#[avr_device::interrupt(atmega128rfa1)]
+fn TIMER1_COMPA() {
+	unsafe {
+		GLOBAL_TIME_IN_SEC += 1;
+	}
+	unsafe { (*atmega_hal::pac::TC1::PTR).tcnt1.write(|w| w.bits(0)) }
+}
+
 // #[no_mangle]
 // pub unsafe extern "avr-interrupt" fn __vector_17() {
 // 	// port::B5::toggle();
-// 	port::E0::toggle();
+// 	// port::E0::toggle();
+// 	// (*arduino_hal::pac::USART0::PTR).udr0.as_ptr()
 // }
 
 // #[avr_device::interrupt(atmega128rfa1)]

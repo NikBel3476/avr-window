@@ -23,7 +23,7 @@
             "args": [
                 "-patmega128rfa1",
                 "-cusbasp",
-                "-Pcom3",
+                "-Pusb",
                 "-b57600",
                 "-Uflash:w:target/avr-atmega128rfa1/release/avr_window.elf:e"
             ]

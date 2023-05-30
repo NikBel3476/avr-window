@@ -12,18 +12,20 @@ panic-halt = "0.2.0"
 embedded-hal = { version = "0.2.7", features = ["unproven"] }
 
 [dependencies.atmega-hal]
-git = "https://github.com/NikBel3476/avr-hal.git"
+# git = "https://github.com/NikBel3476/avr-hal.git"
+git = "https://github.com/Rahix/avr-hal.git"
 branch = "main"
 features = ["atmega2560"]
 
 [dependencies.arduino-hal]
-git = "https://github.com/NikBel3476/avr-hal.git"
+# git = "https://github.com/NikBel3476/avr-hal.git"
+git = "https://github.com/Rahix/avr-hal.git"
 branch = "main"
 features = ["arduino-mega2560"]
 
 [dependencies.avr-device]
-version = "0.4"
-features = ["atmega128rfa1", "rt"]
+version = "0.5.1"
+features = ["atmega2560", "rt"]
 
 [profile.dev]
 panic="abort"
