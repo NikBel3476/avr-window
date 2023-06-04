@@ -32,24 +32,24 @@ const GET_STATE_REQUEST: &[u8; 1] = b"s";
 const GET_GLOBAL_TIME_REQUEST: &[u8; 1] = b"t";
 const UPDATE_GLOBAL_TIME_REQUEST: &[u8; 1] = b"u";
 const SET_TIME_MODE_REQUEST: &[u8; 1] = b"r";
-const ENABLE_SCHEDULE_REQUEST: &[u8; 15] = b"enable_schedule";
-const DISABLE_SCHEDULE_REQUEST: &[u8; 16] = b"disable_schedule";
 const DISABLE_TIME_MODE_REQUEST: &[u8; 1] = b"d";
 const ENABLE_TIME_MODE_REQUEST: &[u8; 1] = b"e";
 const GET_TIME_MODE_RANGE_REQUEST: &[u8; 1] = b"a";
 const SET_SCHEDULE_REQUEST: &[u8; 1] = b"h";
+const ENABLE_SCHEDULE_REQUEST: &[u8; 15] = b"enable_schedule";
+const DISABLE_SCHEDULE_REQUEST: &[u8; 16] = b"disable_schedule";
 const GET_SCHEDULE_TIME: &[u8; 1] = b"b";
 
 const WINDOW_OPENED_RESPONSE: u8 = b'o';
 const WINDOW_CLOSED_RESPONSE: u8 = b'c';
 const SET_TIME_OK_RESPONSE: &[u8; 11] = b"set_time_ok";
 const SET_TIME_ERR_RESPONSE: &[u8; 12] = b"set_time_err";
-const SCHEDULE_ENABLED_RESPONSE: &[u8; 16] = b"schedule_enabled";
-const SHCEDULE_ERR_RESPONSE: &[u8; 12] = b"schedule_err";
-const SHCEDULE_DISABLED_RESPONSE: &[u8; 17] = b"schedule_disabled";
 const TIME_MODE_ENABLED_OK_RESPONSE: &[u8; 9] = b"enable_ok";
 const TIME_MODE_ENABLED_ERR_RESPONSE: &[u8; 10] = b"enable_err";
 const TIME_MODE_DISABLED_RESPONSE: &[u8; 10] = b"disable_ok";
+const SCHEDULE_ENABLED_RESPONSE: &[u8; 16] = b"schedule_enabled";
+const SHCEDULE_ERR_RESPONSE: &[u8; 12] = b"schedule_err";
+const SHCEDULE_DISABLED_RESPONSE: &[u8; 17] = b"schedule_disabled";
 
 enum TimeModeActionState {
 	ShouldBeOpened,
