@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
-	<link rel="stylesheet" href="dist/theme/white.css">
+	<link rel="stylesheet" href="dist/theme/white-contrast.css">
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -66,8 +66,16 @@
 <!--			TODO: сделать анимацию для модулей передачи данных(bluetooth and lora)-->
 			<section data-auto-animate>
 				<h3>Обзор аналогов</h3>
-				<div style="display: grid; ">
-
+				<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); justify-items: stretch; justify-content: center;">
+					<div style="max-height: 30vh;">
+						<img src="assets/images/smart_window_system_picture.png" alt="автоматическая система проветривания помещения 'умное окно'">
+					</div>
+					<div style="max-height: 30vh;">
+						<img src="assets/images/mingardi_window.jpg" alt="цепной привод Mingardi Micro Evo 1">
+					</div>
+					<div style="max-height: 30vh; grid-column: 1 / 2;">
+						<img src="assets/images/system_with_lever.png" alt="система с рычагом и направляющей">
+					</div>
 				</div>
 			</section>
 			<section>
