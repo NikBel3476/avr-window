@@ -1,196 +1,224 @@
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<html lang="ru">
 
-		<title>Курсовая работа</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+	<title>Курсовая работа</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>
-					<div class="r-vstack">
-						<h3>Отчёт по курсовой работе</h3>
-						<p>Разработка системы автоматического управления положением подвижной створки окна</p>
-						<div style="text-align: right; margin-top: 5vh; align-self: flex-end;">
-							<p style="font-size: 0.5em;" class="r">Научный руководитель:</p>
-							<p style="font-size: 0.5em;">Чирков Борис Владимирович</p>
-							<p style="font-size: 0.5em;">Выполнил:</p>
-							<p style="font-size: 0.5em;">Белкин Н.В. Группа: ВМ-41</p>
-						</div>
-					</div>
-				</section>
-				<section data-auto-animate>
-					<h3>Цель курсовой работы</h3>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<div class="r-vstack">
+					<h3 style="font-size: 1.5rem; font-weight: 400;">
+						Министерство науки и высшего образования РФ<br>
+						ФГБОУ ВО «Удмуртский государственный университет»<br>
+						Институт математики, информационных технологий и физики<br>
+						Кафедра информационных систем и сетей<br>
+						Направление 09.03.01.01 «Информатика и вычислительная техника»
+					</h3>
 					<p>
-						Спроектировать устройство для автоматического управления положением подвижной створки окна
+						Выпускная квалификационная работа на тему: «Разработка автоматизированной системы проветривания помещения»
 					</p>
-				</section>
-				<section data-auto-animate>
-					<h2>Основные задачи</h2>
-					<ol class="fragment fade-right">
-						<li>Спроектировать общую схему устройства</li>
-						<li>Спроектировать механизм</li>
-						<li>Написать программу для управления</li>
-					</ol>
-				</section>
-				<section>
-					<h3>Общая схема устройства</h3>
-					<div class="r-hstack" style="display: flex;">
-						<img class="fragment" src="assets/images/General-scheme1.png" alt="Общая схема часть 1"
-								 data-fragment-index="1">
-						<img class="fragment" src="assets/images/General-scheme2.png" alt="Общая схема часть 2"
-								 data-fragment-index="0">
-						<img class="fragment" src="assets/images/General-scheme3.png" alt="Общая схема часть 3"
-								 data-fragment-index="2">
+					<div style="text-align: left; margin-top: 10vh; align-self: flex-end; font-size: 1.5rem;">
+						<p>
+							Выполнил:<br>
+							студент группы ОБ-09.03.03.01-41<br>
+							Белкин Никита Вячеславович
+						</p>
 					</div>
-				</section>
-				<section>
-					<h3>Управляющий механизм</h3>
-					<p>Свойства</p>
-					<ul class="fragment fade-left" style="text-align: left">
-						<li>Простота</li>
-						<li>Легкая установка на окно</li>
-						<li>Надёжным(по возможности)</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Первый вариант</h3>
-					<p>Механизм на основе катушки с леской</p>
-					<div class="r-hstack" style="display: flex">
-						<img src="assets/images/Bobbin1.png" alt="Изображение катушки 1">
-						<img style="margin-left: 20px" src="assets/images/Bobbin2.png" alt="Изображение катушки 2">
-					</div>
-				</section>
-				<section>
-					<h3>Недостатки первого варианта</h3>
-					<ul style="text-align: left">
-						<li class="fragment">Не все окна открываются под собственным весом</li>
-						<li class="fragment">Сложность регистрации момента открытия окна</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Второй вариант</h3>
-					<p>Механизм на основе зубчатой рейки и шестерни</p>
-				</section>
-				<section data-background-video="assets/videos/gear.mp4,assets/videos/gear.webm" data-background-color="#000000"
-								 data-background-video-loop data-background-video-muted
-								 data-background-size="contain">
-					<!--<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>-->
-				</section>
-				<section>
-					<h3>Преимущества перед первым вариантом</h3>
-					<ul style="text-align: left">
-						<li class="fragment">Можно как открывать, так и закрывать окно</li>
-						<li class="fragment">Проще регистрировать факт того, что окно закрыто, либо открыто</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Микроконтроллер</h3>
-					<p>Atmega128rfa1</p>
-					<img style="height: 400px;" src="assets/images/atmega128rfa1.gif" alt="Пины микроконтроллера">
-				</section>
-				<section>
-					<h3>Программа для управления микроконтроллером</h3>
-					<p style="text-align: left">Задачи:</p>
-					<ul class="fragment" style="text-align: left">
-						<li>Управлять механизмом открывания/закрывания</li>
-						<li>Регистрировать сигналы с датчиков</li>
-						<li>Обрабатывать сигналы с устройства передачи данных</li>
-					</ul>
-				</section>
-				<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
-					<h3>Язык программирования</h3>
-					<img style="height: 20vh; margin: auto 20px auto 20px; background-color: #fff;border-radius: 50%;"
-							 src="assets/images/Rust-logo.svg"
-							 alt="Язык программирования Rust">
-				</section>
-				<section style="">
-					<h3>Использованные библиотеки</h3>
-					<div style="display: flex">
-						<figure style="margin: 0 10px; flex: 1 1 0;">
-							<img src="assets/images/Ruduino-repo.png" alt="Репозиторий Ruduino">
-							<figcaption>
-								<a href="https://github.com/avr-rust/ruduino">Ruduino</a>
-							</figcaption>
-						</figure>
-						<figure style="margin: 0 10px; flex: 1 1 0;">
-							<img src="assets/images/avr-hal.png" alt="Репозиторий avr-hal">
-							<figcaption>
-								<a href="https://github.com/avr-rust/ruduino">Avr-hal</a>
-							</figcaption>
-						</figure>
-					</div>
-				</section>
-				<section style="height: 100%">
-					<h5>Логика работы</h5>
-					<img style="height: 80%" src="assets/images/Flowchart.svg" alt="Блок схема">
-				</section>
-				<section>
-					<h4>Взаимодействие микроконтроллера с устройством передачи данных</h4>
-					<img src="assets/images/UART-connection.png"
-							 alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
-					<img src="assets/images/e32-connection.png" alt="Обмен данными между модулями e32-ttl-100">
-				</section>
-				<section>
-					<h3>Управление двигателем</h3>
-					<h4>H-мост</h4>
-					<img style="width: 100%; background: #fff;" src="assets/images/H-bridge.svg" alt="H-мост">
-				</section>
-				<section data-background-image="assets/images/General-scheme-simulIDE.png" data-background-size="contain">
-				</section>
-				<section>
-					<h3>Получившийся результат</h3>
-					<ul style="text-align: left">
-						<li>Был создан минимально работоспособный прототип</li>
-					</ul>
-					<p style="text-align: left;">Нерешённые проблемы:</p>
-					<ul>
-						<li>Ложные срабатывания реле, из-за чего створка не доходит до конечного положения</li>
-						<li>Нет сильного прижима окна в закрытом положении</li>
-						<li>Нет питания от аккумуляторов</li>
-					</ul>
-				</section>
-				<section>
-					<h2>Спасибо за внимание</h2>
-				</section>
-			</div>
+				</div>
+			</section>
+			<section data-auto-animate style="text-align: left;">
+				<h3 style="text-align: center; font-size: 40px;">Постановка задачи</h3>
+				<p style="text-align: left; font-size: 28px;">
+					Цель: разработать автоматизированную систему проветривания помещения
+				</p>
+				<p style="text-align: left; font-size: 28px; margin-bottom: 0;">
+					Требования к системе:
+				</p>
+				<ul style="padding-left: 50px; margin: 0; font-size: 28px;">
+					<li>Простота</li>
+					<li>Легкая установка на окно</li>
+					<li>Удобное управление</li>
+				</ul>
+				<p style="font-size: 28px; margin-bottom: 0;">Поставленные задачи:</p>
+				<ul style="padding-left: 50px; margin: 0; font-size: 28px;">
+					<li>Изучить аналоги, представленные на рынке</li>
+					<li>Разработать общую схему устройства</li>
+					<li>Смоделировать механизм, двигающий подвижную створку окна</li>
+					<li>Разработать алгоритм для автоматизированного управления механизмом</li>
+					<li>Написать программу для микроконтроллера на основе разработанного алгоритма</li>
+					<li>Написать мобильное приложение для удобного управления</li>
+				</ul>
+			</section>
+<!--			TODO: перенести использнованные технологии на один слайд-->
+<!--			TODO: сделать анимацию для модулей передачи данных(bluetooth and lora)-->
+			<section data-auto-animate>
+				<h3>Обзор аналогов</h3>
+				<div style="display: grid; ">
+
+				</div>
+			</section>
+			<section>
+				<h3>Общая схема устройства</h3>
+				<div class="r-hstack" style="display: flex;">
+					<img class="fragment" src="assets/images/General-scheme1.png" alt="Общая схема часть 1"
+						data-fragment-index="1">
+					<img class="fragment" src="assets/images/General-scheme2.png" alt="Общая схема часть 2"
+						data-fragment-index="0">
+					<img class="fragment" src="assets/images/General-scheme3.png" alt="Общая схема часть 3"
+						data-fragment-index="2">
+				</div>
+			</section>
+			<section>
+				<h3>Управляющий механизм</h3>
+				<p>Свойства</p>
+				<ul class="fragment fade-left" style="text-align: left">
+					<li>Простота</li>
+					<li>Легкая установка на окно</li>
+					<li>Надёжным(по возможности)</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Первый вариант</h3>
+				<p>Механизм на основе катушки с леской</p>
+				<div class="r-hstack" style="display: flex">
+					<img src="assets/images/Bobbin1.png" alt="Изображение катушки 1">
+					<img style="margin-left: 20px" src="assets/images/Bobbin2.png" alt="Изображение катушки 2">
+				</div>
+			</section>
+			<section>
+				<h3>Недостатки первого варианта</h3>
+				<ul style="text-align: left">
+					<li class="fragment">Не все окна открываются под собственным весом</li>
+					<li class="fragment">Сложность регистрации момента открытия окна</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Второй вариант</h3>
+				<p>Механизм на основе зубчатой рейки и шестерни</p>
+			</section>
+			<section data-background-video="assets/videos/gear.mp4,assets/videos/gear.webm"
+				data-background-color="#000000" data-background-video-loop data-background-video-muted
+				data-background-size="contain">
+				<!--<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>-->
+			</section>
+			<section>
+				<h3>Преимущества перед первым вариантом</h3>
+				<ul style="text-align: left">
+					<li class="fragment">Можно как открывать, так и закрывать окно</li>
+					<li class="fragment">Проще регистрировать факт того, что окно закрыто, либо открыто</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Микроконтроллер</h3>
+				<p>Atmega128rfa1</p>
+				<img style="height: 400px;" src="assets/images/atmega128rfa1.gif" alt="Пины микроконтроллера">
+			</section>
+			<section>
+				<h3>Программа для управления микроконтроллером</h3>
+				<p style="text-align: left">Задачи:</p>
+				<ul class="fragment" style="text-align: left">
+					<li>Управлять механизмом открывания/закрывания</li>
+					<li>Регистрировать сигналы с датчиков</li>
+					<li>Обрабатывать сигналы с устройства передачи данных</li>
+				</ul>
+			</section>
+			<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+				<h3>Язык программирования</h3>
+				<img style="height: 20vh; margin: auto 20px auto 20px; background-color: #fff;border-radius: 50%;"
+					src="assets/images/Rust-logo.svg" alt="Язык программирования Rust">
+			</section>
+			<section style="">
+				<h3>Использованные библиотеки</h3>
+				<div style="display: flex">
+					<figure style="margin: 0 10px; flex: 1 1 0;">
+						<img src="assets/images/Ruduino-repo.png" alt="Репозиторий Ruduino">
+						<figcaption>
+							<a href="https://github.com/avr-rust/ruduino">Ruduino</a>
+						</figcaption>
+					</figure>
+					<figure style="margin: 0 10px; flex: 1 1 0;">
+						<img src="assets/images/avr-hal.png" alt="Репозиторий avr-hal">
+						<figcaption>
+							<a href="https://github.com/avr-rust/ruduino">Avr-hal</a>
+						</figcaption>
+					</figure>
+				</div>
+			</section>
+			<section style="height: 100%">
+				<h5>Логика работы</h5>
+				<img style="height: 80%" src="assets/images/Flowchart.svg" alt="Блок схема">
+			</section>
+			<section>
+				<h4>Взаимодействие микроконтроллера с устройством передачи данных</h4>
+				<img src="assets/images/UART-connection.png"
+					alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
+				<img src="assets/images/e32-connection.png" alt="Обмен данными между модулями e32-ttl-100">
+			</section>
+			<section>
+				<h3>Управление двигателем</h3>
+				<h4>H-мост</h4>
+				<img style="width: 100%; background: #fff;" src="assets/images/H-bridge.svg" alt="H-мост">
+			</section>
+			<section data-background-image="assets/images/General-scheme-simulIDE.png" data-background-size="contain">
+			</section>
+			<section>
+				<h3>Получившийся результат</h3>
+				<ul style="text-align: left">
+					<li>Был создан минимально работоспособный прототип</li>
+				</ul>
+				<p style="text-align: left;">Нерешённые проблемы:</p>
+				<ul>
+					<li>Ложные срабатывания реле, из-за чего створка не доходит до конечного положения</li>
+					<li>Нет сильного прижима окна в закрытом положении</li>
+					<li>Нет питания от аккумуляторов</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Спасибо за внимание</h2>
+			</section>
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script src="plugin/zoom/zoom.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				width: 960,
-				height: 700,
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			width: 960,
+			height: 700,
 
-				controls: true,
-				progress: true,
-				center: true,
-				hash: true,
-				hideInactiveCursor: true,
-				hideCursorTime: 2000,
-				jumpToSlide: true,
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+			hideInactiveCursor: true,
+			hideCursorTime: 2000,
+			jumpToSlide: true,
 
-				slideNumber: 'c/t',
+			slideNumber: 'c/t',
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealHighlight, RevealNotes, RevealZoom ]
-			});
-		</script>
-	</body>
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealHighlight, RevealNotes, RevealZoom]
+		});
+	</script>
+</body>
+
 </html>
