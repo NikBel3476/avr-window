@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<title>Курсовая работа</title>
+	<title>ВКР Белкин Н.В.</title>
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
@@ -39,6 +39,7 @@
 					</div>
 				</div>
 			</section>
+
 			<section data-auto-animate style="text-align: left;">
 				<h3 style="text-align: center; font-size: 40px;">Постановка задачи</h3>
 				<p style="text-align: left; font-size: 28px;">
@@ -49,7 +50,7 @@
 				</p>
 				<ul style="padding-left: 50px; margin: 0; font-size: 28px;">
 					<li>Простота</li>
-					<li>Легкая установка на окно</li>
+					<li>Легкая установка механизма на окно</li>
 					<li>Удобное управление</li>
 				</ul>
 				<p style="font-size: 28px; margin-bottom: 0;">Поставленные задачи:</p>
@@ -62,93 +63,146 @@
 					<li>Написать мобильное приложение для удобного управления</li>
 				</ul>
 			</section>
-<!--			TODO: перенести использнованные технологии на один слайд-->
-<!--			TODO: сделать анимацию для модулей передачи данных(bluetooth and lora)-->
 			<section data-auto-animate>
 				<h3>Обзор аналогов</h3>
 				<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); justify-items: stretch; justify-content: center;">
-					<div style="max-height: 30vh;">
-						<img src="assets/images/smart_window_system_picture.png" alt="автоматическая система проветривания помещения 'умное окно'">
+					<div style="max-height: 30vh; padding: 10px;">
+						<figure style="width: 100%; height: 100%;">
+							<img style="max-width: 100%; max-height: 15vh; margin: 0;" src="assets/images/smart_window_system_picture.png" alt="автоматическая система проветривания помещения «умное окно»">
+							<figcaption style="font-size: 1.5rem;">Автоматическая система проветривания помещения «Умное окно»</figcaption>
+						</figure>
 					</div>
-					<div style="max-height: 30vh;">
-						<img src="assets/images/mingardi_window.jpg" alt="цепной привод Mingardi Micro Evo 1">
+					<div style="max-height: 30vh; padding: 10px;">
+						<figure style="width: 100%; height: 100%;">
+							<img style="max-width: 100%; max-height: 15vh; margin: 0;" src="assets/images/mingardi_window.jpg" alt="цепной привод Mingardi Micro Evo 1">
+							<figcaption style="font-size: 1.5rem;">Цепной привод Mingardi Micro Evo 1</figcaption>
+						</figure>
 					</div>
-					<div style="max-height: 30vh; grid-column: 1 / 2;">
-						<img src="assets/images/system_with_lever.png" alt="система с рычагом и направляющей">
+					<div style="max-height: 30vh; padding: 10px; grid-column: span 2;">
+						<figure style="width: 100%; height: 100%;">
+							<img style="max-width: 100%; max-height: 15vh; margin: 0;" src="assets/images/system_with_lever.png" alt="система с рычагом и направляющей">
+							<figcaption style="font-size: 1.5rem;">Система с рычагом и направляющей</figcaption>
+						</figure>
 					</div>
 				</div>
 			</section>
+
 			<section>
-				<h3>Общая схема устройства</h3>
+				<h3>Использованные технологии</h3>
+				<div style="display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center;">
+					<img data-auto-animate data-auto-animate-delay="0.5" data-auto-animate-easing="linear" class="fade-up" style="height: 20vh; background-color: #fff;border-radius: 50%;"
+						 src="assets/images/Rust-logo.svg" alt="Язык программирования Rust">
+					<img style="height: 20vh;" src="assets/images/flutter-logo.svg" alt="Комплект средств разработки пользовательских интерфейсов Flutter">
+					<img style="height: 20vh;" src="assets/images/FreeCAD-logo.svg" alt="САПР FreeCAD">
+				</div>
+			</section>
+
+			<section>
+				<h3>Условная схема устройства</h3>
 				<div class="r-hstack" style="display: flex;">
-					<img class="fragment" src="assets/images/General-scheme1.png" alt="Общая схема часть 1"
+					<img class="fragment" src="assets/images/general-scheme1_black.png" alt="Общая схема часть 1"
 						data-fragment-index="1">
-					<img class="fragment" src="assets/images/General-scheme2.png" alt="Общая схема часть 2"
+					<img class="fragment" src="assets/images/general-scheme2_black.png" alt="Общая схема часть 2"
 						data-fragment-index="0">
-					<img class="fragment" src="assets/images/General-scheme3.png" alt="Общая схема часть 3"
+					<img class="fragment" src="assets/images/general-scheme3_black.png" alt="Общая схема часть 3"
 						data-fragment-index="2">
 				</div>
 			</section>
-			<section>
+
+			<section data-visibility="hidden">
 				<h3>Управляющий механизм</h3>
 				<p>Свойства</p>
 				<ul class="fragment fade-left" style="text-align: left">
 					<li>Простота</li>
 					<li>Легкая установка на окно</li>
-					<li>Надёжным(по возможности)</li>
 				</ul>
 			</section>
+
 			<section>
-				<h3>Первый вариант</h3>
+				<h3>Первый вариант механизма</h3>
 				<p>Механизм на основе катушки с леской</p>
-				<div class="r-hstack" style="display: flex">
-					<img src="assets/images/Bobbin1.png" alt="Изображение катушки 1">
-					<img style="margin-left: 20px" src="assets/images/Bobbin2.png" alt="Изображение катушки 2">
+				<div class="r-hstack" style="display: flex; justify-content: space-around; align-items: center;">
+					<img style="max-width: 50%;" src="assets/images/bobbin_v2.png" alt="Изображение катушки 1">
+					<img style="max-width: 45%; margin-left: 20px;" src="assets/images/bobbin_v2_front.png" alt="Изображение катушки 2">
 				</div>
+				<aside class="notes">
+					<ul style="text-align: left">
+						<li>Не все окна открываются под собственным весом</li>
+						<li>Сложность регистрации момента открытия окна</li>
+					</ul>
+				</aside>
 			</section>
+
 			<section>
-				<h3>Недостатки первого варианта</h3>
-				<ul style="text-align: left">
-					<li class="fragment">Не все окна открываются под собственным весом</li>
-					<li class="fragment">Сложность регистрации момента открытия окна</li>
-				</ul>
-			</section>
-			<section>
-				<h3>Второй вариант</h3>
+				<h3>Второй вариант механизма</h3>
 				<p>Механизм на основе зубчатой рейки и шестерни</p>
+				<div class="r-hstack" style="display: flex; justify-content: space-around; align-items: center;">
+					<img style="max-width: 40%;" src="assets/images/Gear.png" alt="Шетсерня">
+					<img style="max-width: 50%; margin-left: 20px;" src="assets/images/Rack.png" alt="Зубчатая рейка">
+				</div>
+				<aside class="notes">
+					<p>Преимущества перед первым вариантом</p>
+					<ul style="text-align: left">
+						<li>Можно как открывать, так и закрывать окно</li>
+						<li>Проще регистрировать факт того, что окно закрыто, либо открыто</li>
+					</ul>
+				</aside>
 			</section>
+
 			<section data-background-video="assets/videos/gear.mp4,assets/videos/gear.webm"
 				data-background-color="#000000" data-background-video-loop data-background-video-muted
 				data-background-size="contain">
 				<!--<video src="assets/videos/gear.mp4" data-autoplay loop="loop"></video>-->
 			</section>
+
 			<section>
-				<h3>Преимущества перед первым вариантом</h3>
-				<ul style="text-align: left">
-					<li class="fragment">Можно как открывать, так и закрывать окно</li>
-					<li class="fragment">Проще регистрировать факт того, что окно закрыто, либо открыто</li>
-				</ul>
+				<div style="display: flex; flex-flow: row nowrap; justify-content: space-around; align-items: center;">
+					<figure>
+						<img style="margin: 0;" src="assets/images/frameFixation.png" alt="Крепление к раме">
+						<figcaption style="font-size: 1.5rem;">Крепление к раме</figcaption>
+					</figure>
+					<figure>
+						<img style="margin: 0;" src="assets/images/frame_fixation_short.png" alt="Крепление к раме (уменьшенное)">
+						<figcaption style="font-size: 1.5rem;">Крепление к раме(уменьшенное)</figcaption>
+					</figure>
+				</div>
 			</section>
+
 			<section>
-				<h3>Микроконтроллер</h3>
-				<p>Atmega128rfa1</p>
-				<img style="height: 400px;" src="assets/images/atmega128rfa1.gif" alt="Пины микроконтроллера">
+				<figure>
+					<img style="max-height: 60vh; margin: 0;" src="assets/images/window_fixation.png" alt="Крепление к створке">
+					<figcaption style="font-size: 1.5rem;">Крепление к створке</figcaption>
+				</figure>
 			</section>
+
+			<section>
+				<h3>Микроконтроллер и плата</h3>
+				<div style="display: flex; flex-flow: row nowrap; justify-content: space-around; align-items: center;">
+					<img style="height: 40vh;" src="assets/images/atmega128rfa1_without_pins.jpg" alt="Микроконтроллер Atmega128RFA1">
+					<img style="height: 40vh;" src="assets/images/mcu_board_scheme.png" alt="Плата СУЭ-П1-1">
+				</div>
+			</section>
+
 			<section>
 				<h3>Программа для управления микроконтроллером</h3>
-				<p style="text-align: left">Задачи:</p>
-				<ul class="fragment" style="text-align: left">
-					<li>Управлять механизмом открывания/закрывания</li>
-					<li>Регистрировать сигналы с датчиков</li>
-					<li>Обрабатывать сигналы с устройства передачи данных</li>
-				</ul>
+				<img src="assets/images/general_scheme_program.png" alt="Общая схема работы программы">
+				<aside class="notes">
+					<p style="text-align: left">Задачи:</p>
+					<ul style="text-align: left">
+						<li>Управлять механизмом открывания/закрывания</li>
+						<li>Регистрировать сигналы с датчиков</li>
+						<li>Обрабатывать сигналы с устройства передачи данных</li>
+					</ul>
+				</aside>
 			</section>
-			<section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+
+			<section data-visibility="hidden" data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
 				<h3>Язык программирования</h3>
 				<img style="height: 20vh; margin: auto 20px auto 20px; background-color: #fff;border-radius: 50%;"
 					src="assets/images/Rust-logo.svg" alt="Язык программирования Rust">
 			</section>
-			<section style="">
+
+			<section data-visibility="hidden">
 				<h3>Использованные библиотеки</h3>
 				<div style="display: flex">
 					<figure style="margin: 0 10px; flex: 1 1 0;">
@@ -165,24 +219,121 @@
 					</figure>
 				</div>
 			</section>
+
 			<section style="height: 100%">
 				<h5>Логика работы</h5>
-				<img style="height: 80%" src="assets/images/Flowchart.svg" alt="Блок схема">
+				<img style="height: 80%" src="assets/images/Flowchart.png" alt="Блок схема">
 			</section>
+
 			<section>
-				<h4>Взаимодействие микроконтроллера с устройством передачи данных</h4>
-				<img src="assets/images/UART-connection.png"
-					alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
-				<img src="assets/images/e32-connection.png" alt="Обмен данными между модулями e32-ttl-100">
+				<h3>Режимы работы</h3>
+				<div style="display: flex; flex-flow: row nowrap; justify-content: space-around; align-items: center; align-content: stretch;">
+					<figure>
+						<img style="height: 40vh;" src="assets/images/loop_work.gif" alt="Цикл анимация">
+						<figcaption>Работа периодами</figcaption>
+					</figure>
+					<figure>
+						<img style="height: 40vh;" src="assets/images/schedule.gif" alt="Расписание анимация">
+						<figcaption>Работа по расписанию</figcaption>
+					</figure>
+				</div>
 			</section>
+
+			<section data-auto-animate data-transition="slide-in fade-out" data-auto-animate-easing="linear">
+				<h4>Взаимодействие с устройством передачи данных</h4>
+				<div style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
+					<img data-id="uart-connection" style="max-height: 10vh; margin: 0;" src="assets/images/uart_connection_hc-06.png"
+						 alt="Обмен данными между микроконтроллером и bluetooth модулем hc-06">
+					<img data-id="connection-between" style="max-height: 40vh; margin: 0;" src="assets/images/connection_bluetooth.png" alt="Обмен данными по bluetooth между модулем hc-06 и смартфоном">
+				</div>
+			</section>
+
+			<section data-auto-animate data-transition="fade-in fade-out" data-auto-animate-easing="linear">
+				<h4>Взаимодействие с устройством передачи данных</h4>
+				<div style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
+					<img data-id="uart-connection" style="max-height: 15vh; margin: 0;" src="assets/images/uart_connection_lora.png"
+						 alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
+					<img data-id="connection-between" style="max-height: 40vh; margin: 50px 0 0 0;" src="assets/images/connection_lora.png" alt="Обмен данными между модулями e32-ttl-100">
+				</div>
+			</section>
+
 			<section>
 				<h3>Управление двигателем</h3>
 				<h4>H-мост</h4>
 				<img style="width: 100%; background: #fff;" src="assets/images/H-bridge.svg" alt="H-мост">
 			</section>
-			<section data-background-image="assets/images/General-scheme-simulIDE.png" data-background-size="contain">
+
+			<section data-background-image="assets/images/h_bridge_relay_scheme.png" data-background-size="contain">
 			</section>
+
+			<section data-background-image="assets/images/circuit.png" data-background-size="contain">
+			</section>
+
+			<section data-transition="fade-in fade-out">
+				<h5>Интерфейс мобильного приложения</h5>
+				<figure>
+					<img style="height: 60vh; margin: 0;" src="assets/images/screen_1_v3.jpg" alt="Экран поиска доступных устройств">
+					<figcaption style="font-size: 1.5rem;">Экран поиска доступных устройств</figcaption>
+				</figure>
+			</section>
+
+			<section data-transition="fade-in fade-out">
+				<h5>Интерфейс мобильного приложения</h5>
+				<figure>
+					<img style="height: 60vh; margin: 0;" src="assets/images/screen_2_v3.jpg" alt="Экран управления">
+					<figcaption style="font-size: 1.5rem;">Экран управления</figcaption>
+				</figure>
+			</section>
+
+			<section data-transition="fade-in fade-out">
+				<h5>Интерфейс мобильного приложения</h5>
+				<figure>
+					<img style="height: 60vh; margin: 0;" src="assets/images/screen_3_v3.jpg" alt="Окно установки времени">
+					<figcaption style="font-size: 1.5rem;">Окно установки времени</figcaption>
+				</figure>
+			</section>
+
+			<section data-transition="fade-in fade-out">
+				<h5>Интерфейс мобильного приложения</h5>
+				<figure>
+					<img style="height: 60vh; margin: 0;" src="assets/images/screen_4_v3.jpg" alt="Окно установки времени для работы периодами">
+					<figcaption style="font-size: 1.5rem;">Окно установки времени для работы периодами</figcaption>
+				</figure>
+			</section>
+
+			<section data-transition="fade-in fade-out">
+				<h5>Интерфейс мобильного приложения</h5>
+				<figure>
+					<img style="height: 60vh; margin: 0;" src="assets/images/screen_5_v3.jpg" alt="Окно установки времени для работы по расписанию">
+					<figcaption style="font-size: 1.5rem;">Окно установки времени для работы по расписанию</figcaption>
+				</figure>
+			</section>
+
+			<section data-background-image="assets/images/scheme_assembly.jpg" data-background-size="contain">
+			</section>
+
+			<section data-background-image="assets/images/picture_window_closed.jpg" data-background-size="contain">
+			</section>
+
+			<section data-background-image="assets/images/picture_window_opened.jpg" data-background-size="contain">
+			</section>
+
 			<section>
+				<h3>Заключение</h3>
+				<p>Используя собранную электрическую схему, смоделированный механизм и мобильное приложение, была разработана автоматизированная система проветривания помещения</p>
+			</section>
+
+			<section>
+				<h5>Возможные пути развития</h5>
+				<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); justify-items: center; align-items: center;">
+					<img class="fragment fade-right" style="max-height: 30vh;" src="assets/images/gas_sensor.jpg" alt="Датчик углекислого газа MQ135">
+					<img class="fragment fade-left" style="max-height: 30vh;" src="assets/images/central_program.png" alt="Центральная управляющая программа">
+					<img class="fragment fade-right" style="max-height: 30vh;" src="assets/images/hinge.gif" alt="Шаровый шарнир">
+					<img class="fragment fade-left" style="max-height: 30vh;" src="assets/images/evacuation.jpg" alt="Знак эвакуации">
+				</div>
+			</section>
+
+			<section data-visibility="hidden">
 				<h3>Получившийся результат</h3>
 				<ul style="text-align: left">
 					<li>Был создан минимально работоспособный прототип</li>
@@ -194,6 +345,7 @@
 					<li>Нет питания от аккумуляторов</li>
 				</ul>
 			</section>
+
 			<section>
 				<h2>Спасибо за внимание</h2>
 			</section>
