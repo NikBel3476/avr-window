@@ -31,3 +31,5 @@ each request must end with ';' char
 \*(3) set_time_err will be sended if time value >= 86400 (i.e. greater than 23:59:59)  
 \*(4) the first 4 bytes - time in opened position, the second 4 bytes - time in closed position  
 \*(5) the first 4 bytes - time to open, the second 4 bytes - time to close
+
+#### presentation avaialble at https://nikbel3476.github.io/avr-window
