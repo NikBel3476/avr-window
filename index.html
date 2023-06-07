@@ -163,8 +163,8 @@
 			</section>
 
 			<section>
-				<figure>
-					<img style="max-height: 60vh; margin: 0;" src="assets/images/window_fixation.png" alt="Крепление к створке">
+				<figure style="display: flex; flex-flow: column nowrap; justify-content: center; align-items: center;">
+					<img style="max-height: 600px; margin: 0;" src="assets/images/window_fixation.png" alt="Крепление к створке">
 					<figcaption style="font-size: 1.5rem;">Крепление к створке</figcaption>
 				</figure>
 			</section>
@@ -172,8 +172,8 @@
 			<section>
 				<h3>Микроконтроллер и плата</h3>
 				<div style="display: flex; flex-flow: row nowrap; justify-content: space-around; align-items: center;">
-					<img style="height: 40vh;" src="assets/images/atmega128rfa1_without_pins.jpg" alt="Микроконтроллер Atmega128RFA1">
-					<img style="height: 40vh;" src="assets/images/mcu_board_scheme.png" alt="Плата СУЭ-П1-1">
+					<img style="max-width: 45%; max-height: 50%; margin: 0;" src="assets/images/atmega128rfa1_without_pins.jpg" alt="Микроконтроллер Atmega128RFA1">
+					<img style="max-width: 50%; max-height: 50%; margin: 0;" src="assets/images/mcu_board_scheme.png" alt="Плата СУЭ-П1-1">
 				</div>
 			</section>
 
@@ -215,19 +215,19 @@
 			</section>
 
 			<section style="height: 100%">
-				<h5>Логика работы</h5>
+				<h5>Логика работы закрытия/открытия</h5>
 				<img style="height: 80%" src="assets/images/Flowchart.png" alt="Блок схема">
 			</section>
 
 			<section>
 				<h3>Режимы работы</h3>
-				<div style="display: flex; flex-flow: row nowrap; justify-content: space-around; align-items: center; align-content: stretch;">
-					<figure>
-						<img style="height: 40vh;" src="assets/images/loop_work.gif" alt="Цикл анимация">
+				<div style="height: 100%; display: flex; flex-flow: row nowrap; justify-content: space-around; align-items: center; align-content: center;">
+					<figure style="display: flex; flex-flow: column nowrap; justify-content: space-between;">
+						<img style="height: 80%;" src="assets/images/loop_work.gif" alt="Цикл анимация">
 						<figcaption>Работа периодами</figcaption>
 					</figure>
-					<figure>
-						<img style="height: 40vh;" src="assets/images/schedule.gif" alt="Расписание анимация">
+					<figure style="display: flex; flex-flow: column nowrap; justify-content: space-between;">
+						<img style="height: 80%;" src="assets/images/schedule.gif" alt="Расписание анимация">
 						<figcaption>Работа по расписанию</figcaption>
 					</figure>
 				</div>
@@ -236,18 +236,18 @@
 			<section data-auto-animate data-transition="slide-in fade-out" data-auto-animate-easing="linear">
 				<h4>Взаимодействие с устройством передачи данных</h4>
 				<div style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
-					<img data-id="uart-connection" style="max-height: 10vh; margin: 0;" src="assets/images/uart_connection_hc-06.png"
+					<img data-id="uart-connection" style="min-height: 100px; max-height: 150px; margin: 0;" src="assets/images/uart_connection_hc-06.png"
 						 alt="Обмен данными между микроконтроллером и bluetooth модулем hc-06">
-					<img data-id="connection-between" style="max-height: 40vh; margin: 0;" src="assets/images/connection_bluetooth.png" alt="Обмен данными по bluetooth между модулем hc-06 и смартфоном">
+					<img data-id="connection-between" style="max-height: 400px; margin: 0;" src="assets/images/connection_bluetooth.png" alt="Обмен данными по bluetooth между модулем hc-06 и смартфоном">
 				</div>
 			</section>
 
 			<section data-auto-animate data-transition="fade-in fade-out" data-auto-animate-easing="linear">
 				<h4>Взаимодействие с устройством передачи данных</h4>
 				<div style="display: flex; flex-flow: column; justify-content: center; align-items: center;">
-					<img data-id="uart-connection" style="max-height: 15vh; margin: 0;" src="assets/images/uart_connection_lora.png"
+					<img data-id="uart-connection" style="max-height: 300px; margin: 0;" src="assets/images/uart_connection_lora.png"
 						 alt="Обмен данными между микроконтроллером и модулем e32-ttl100">
-					<img data-id="connection-between" style="max-height: 40vh; margin: 50px 0 0 0;" src="assets/images/connection_lora.png" alt="Обмен данными между модулями e32-ttl-100">
+					<img data-id="connection-between" style="max-height: 300px; margin: 50px 0 0 0;" src="assets/images/connection_lora.png" alt="Обмен данными между модулями e32-ttl-100">
 				</div>
 			</section>
 
@@ -266,7 +266,7 @@
 			<section data-transition="fade-in fade-out">
 				<h5>Интерфейс мобильного приложения</h5>
 				<figure>
-					<img style="height: 60vh; margin: 0;" src="assets/images/screen_1_v3.jpg" alt="Экран поиска доступных устройств">
+					<img style="max-height: 580px; margin: 0;" src="assets/images/screen_1_v3.jpg" alt="Экран поиска доступных устройств">
 					<figcaption style="font-size: 1.5rem;">Экран поиска доступных устройств</figcaption>
 				</figure>
 			</section>
@@ -274,7 +274,7 @@
 			<section data-transition="fade-in fade-out">
 				<h5>Интерфейс мобильного приложения</h5>
 				<figure>
-					<img style="height: 60vh; margin: 0;" src="assets/images/screen_2_v3.jpg" alt="Экран управления">
+					<img style="max-height: 580px; margin: 0;" src="assets/images/screen_2_v3.jpg" alt="Экран управления">
 					<figcaption style="font-size: 1.5rem;">Экран управления</figcaption>
 				</figure>
 			</section>
@@ -282,7 +282,7 @@
 			<section data-transition="fade-in fade-out">
 				<h5>Интерфейс мобильного приложения</h5>
 				<figure>
-					<img style="height: 60vh; margin: 0;" src="assets/images/screen_3_v3.jpg" alt="Окно установки времени">
+					<img style="max-height: 580px; margin: 0;" src="assets/images/screen_3_v3.jpg" alt="Окно установки времени">
 					<figcaption style="font-size: 1.5rem;">Окно установки времени</figcaption>
 				</figure>
 			</section>
@@ -290,7 +290,7 @@
 			<section data-transition="fade-in fade-out">
 				<h5>Интерфейс мобильного приложения</h5>
 				<figure>
-					<img style="height: 60vh; margin: 0;" src="assets/images/screen_4_v3.jpg" alt="Окно установки времени для работы периодами">
+					<img style="max-height: 580px; margin: 0;" src="assets/images/screen_4_v3.jpg" alt="Окно установки времени для работы периодами">
 					<figcaption style="font-size: 1.5rem;">Окно установки времени для работы периодами</figcaption>
 				</figure>
 			</section>
@@ -298,7 +298,7 @@
 			<section data-transition="fade-in fade-out">
 				<h5>Интерфейс мобильного приложения</h5>
 				<figure>
-					<img style="height: 60vh; margin: 0;" src="assets/images/screen_5_v3.jpg" alt="Окно установки времени для работы по расписанию">
+					<img style="max-height: 580px; margin: 0;" src="assets/images/screen_5_v3.jpg" alt="Окно установки времени для работы по расписанию">
 					<figcaption style="font-size: 1.5rem;">Окно установки времени для работы по расписанию</figcaption>
 				</figure>
 			</section>
@@ -320,10 +320,10 @@
 			<section>
 				<h5>Возможные пути развития</h5>
 				<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); justify-items: center; align-items: center;">
-					<img class="fragment fade-right" style="max-height: 30vh; margin: 0;" src="assets/images/gas_sensor.jpg" alt="Датчик углекислого газа MQ135">
-					<img class="fragment fade-left" style="max-height: 30vh; margin: 0;" src="assets/images/central_program.png" alt="Центральная управляющая программа">
-					<img class="fragment fade-right" style="max-height: 30vh; margin: 0;" src="assets/images/hinge.gif" alt="Шаровый шарнир">
-					<img class="fragment fade-left" style="max-height: 30vh; margin: 0;" src="assets/images/evacuation.jpg" alt="Знак эвакуации">
+					<img class="fragment fade-right" style="max-height: 300px; margin: 0;" src="assets/images/gas_sensor.jpg" alt="Датчик углекислого газа MQ135">
+					<img class="fragment fade-left" style="max-height: 300px; margin: 0;" src="assets/images/central_program.png" alt="Центральная управляющая программа">
+					<img class="fragment fade-right" style="max-height: 300px; margin: 0;" src="assets/images/hinge.gif" alt="Шаровый шарнир">
+					<img class="fragment fade-left" style="max-height: 300px; margin: 0;" src="assets/images/evacuation.jpg" alt="Знак эвакуации">
 				</div>
 			</section>
 
