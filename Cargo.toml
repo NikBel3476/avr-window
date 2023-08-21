@@ -5,9 +5,9 @@ edition = '2021'
 
 [dependencies]
 # ruduino = { git = "https://github.com/NikBel3476/ruduino", branch = "master" }
-ebyte-e32 = { git="https://github.com/barafael/ebyte-e32-rs.git", branch="main" }
-nb = "0.1.3"
-ufmt = "0.1.2"
+ebyte-e32 = { git = "https://github.com/barafael/ebyte-e32-rs.git", branch = "main" }
+nb = "1.1.0"
+ufmt = "0.2.0"
 panic-halt = "0.2.0"
 embedded-hal = { version = "0.2.7", features = ["unproven"] }
 
@@ -28,8 +28,8 @@ version = "0.5.1"
 features = ["atmega2560", "rt"]
 
 [profile.dev]
-panic="abort"
+panic = "abort"
 
 [profile.release]
 lto = true
-panic="abort"
+panic = "abort"
