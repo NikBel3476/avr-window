@@ -9,10 +9,6 @@
             ],
             "label": "build",
             "args": [
-                "--target",
-                "avr-atmega128rfa1.json",
-                "-Z",
-                "build-std=core",
                 "--release"
             ]
         },
@@ -49,10 +45,6 @@
             ],
             "label": "build with asm",
             "args": [
-                "--target",
-                "atmega128rfa1.json",
-                "-Z",
-                "build-std=core",
                 "--release",
                 "--",
                 "--emit",
