@@ -19,5 +19,6 @@ COPY --chown=avr-rust:avr-rust . /usr/src/avr_window
 
 WORKDIR /usr/src/avr_window
 ENV AVR_CPU_FREQUENCY_HZ=16000000
+ENV TARGET=${target}
 
-CMD ["cargo", "build", "--target", "avr-${target}.json", "--features", "${target}", "--release"]
+CMD cargo build --target avr-${TARGET}.json --features $TARGET --release
