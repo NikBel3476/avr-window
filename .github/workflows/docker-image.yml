@@ -11,11 +11,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        target: ["atmega128rfa1", "atmega328p"]
+
     steps:
     - uses: actions/checkout@v3
     - name: Prepare the AVR Rust build environment
       run:
-        docker build . --file Dockerfile.ci --tag avr-rust/avr_window.ci:$GITHUB_RUN_NUMBER
+        docker build . --build-arg target=${{matrix.target}} --file Dockerfile.ci --tag avr-rust/avr_window.ci:$GITHUB_RUN_NUMBER
 
     - name: Compile the crate
       run:

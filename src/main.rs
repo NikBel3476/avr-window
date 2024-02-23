@@ -102,10 +102,19 @@ fn main() -> ! {
 
 	let pins = atmega_hal::pins!(dp);
 
+	#[cfg(feature = "atmega128rfa1")]
+	let pin_rx = pins.pe0;
+	#[cfg(feature = "atmega328p")]
+	let pin_rx = pins.pd0;
+	#[cfg(feature = "atmega128rfa1")]
+	let pin_tx = pins.pe1;
+	#[cfg(feature = "atmega328p")]
+	let pin_tx = pins.pd1;
+
 	let mut serial1 = arduino_hal::Usart::new(
 		dp.USART0,
-		pins.pe0,
-		pins.pe1.into_output(),
+		pin_rx,
+		pin_tx.into_output(),
 		BaudrateExt::into_baudrate(9600),
 	);
 
@@ -113,15 +122,27 @@ fn main() -> ! {
 
 	// engine rotation direction
 	// low -> close; high -> open
+	#[cfg(feature = "atmega128rfa1")]
 	let mut engine_direction_pin = pins.pe2.into_output();
+	#[cfg(feature = "atmega328p")]
+	let mut engine_direction_pin = pins.pd2.into_output();
 	engine_direction_pin.set_high();
 
+	#[cfg(feature = "atmega128rfa1")]
 	let mut engine_inverse_pin = pins.pe3.into_output();
+	#[cfg(feature = "atmega328p")]
+	let mut engine_inverse_pin = pins.pd3.into_output();
 	engine_inverse_pin.set_high();
 
 	// open/close sensors
+	#[cfg(feature = "atmega128rfa1")]
 	let close_sensor = pins.pe5.into_floating_input();
+	#[cfg(feature = "atmega328p")]
+	let close_sensor = pins.pd5.into_floating_input();
+	#[cfg(feature = "atmega128rfa1")]
 	let open_sensor = pins.pe6.into_floating_input();
+	#[cfg(feature = "atmega328p")]
+	let open_sensor = pins.pd6.into_floating_input();
 
 	reg_timer(&timer1);
 
@@ -432,6 +453,70 @@ pub fn reg_timer(timer1: &TC1) {
 	timer1.timsk1.write(|w| w.ocie1a().set_bit()); //enable this specific interrupt
 }
 
+#[cfg(feature = "atmega328p")]
+#[avr_device::interrupt(atmega328p)]
+fn TIMER1_COMPA() {
+	unsafe {
+		GLOBAL_TIME_IN_SEC = match GLOBAL_TIME_IN_SEC.cmp(&(SECONDS_IN_DAY - 1)) {
+			cmp::Ordering::Less => GLOBAL_TIME_IN_SEC + 1,
+			_ => 0,
+		};
+
+		if TIME_MODE.enabled {
+			match TIME_MODE.action_state {
+				TimeModeActionState::ShouldBeOpened => {
+					TIME_MODE.active_time_offset = match TIME_MODE
+						.active_time_offset
+						.cmp(&TIME_MODE.active_time_in_sec)
+					{
+						cmp::Ordering::Less => TIME_MODE.active_time_offset + 1,
+						_ => {
+							TIME_MODE.action_state = TimeModeActionState::ShouldBeClosed;
+							0
+						}
+					}
+				}
+				TimeModeActionState::ShouldBeClosed => {
+					TIME_MODE.delay_time_offset = match TIME_MODE
+						.delay_time_offset
+						.cmp(&TIME_MODE.delay_time_in_sec)
+					{
+						cmp::Ordering::Less => TIME_MODE.delay_time_offset + 1,
+						_ => {
+							TIME_MODE.action_state = TimeModeActionState::ShouldBeOpened;
+							0
+						}
+					}
+				}
+			}
+		}
+
+		if SCHEDULE.enabled {
+			match SCHEDULE.open_time.cmp(&SCHEDULE.close_time) {
+				cmp::Ordering::Less => {
+					SCHEDULE.action_state = match GLOBAL_TIME_IN_SEC >= SCHEDULE.open_time
+						&& GLOBAL_TIME_IN_SEC <= SCHEDULE.close_time
+					{
+						true => TimeModeActionState::ShouldBeOpened,
+						false => TimeModeActionState::ShouldBeClosed,
+					}
+				}
+				_ => {
+					SCHEDULE.action_state = match GLOBAL_TIME_IN_SEC >= SCHEDULE.open_time
+						|| GLOBAL_TIME_IN_SEC <= SCHEDULE.close_time
+					{
+						true => TimeModeActionState::ShouldBeOpened,
+						false => TimeModeActionState::ShouldBeClosed,
+					}
+				}
+			}
+		}
+
+		(*atmega_hal::pac::TC1::PTR).tcnt1.write(|w| w.bits(0))
+	}
+}
+
+#[cfg(feature = "atmega128rfa1")]
 #[avr_device::interrupt(atmega128rfa1)]
 fn TIMER1_COMPA() {
 	unsafe {

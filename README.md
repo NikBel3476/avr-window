@@ -1,18 +1,21 @@
 # Avr window opener project
 
-this crate can be used only for atmega128rfa1 or atmega328p mcu based boards
+This crate can be used only for atmega128rfa1 or atmega328p mcu based boards
 
-### Compile the crate to an ELF executable.
+### Compile the crate to an ELF executable
 
-cargo build --target \<target\> --release
+`cargo build --target <target> --features <mcu> --release`
 
-available targets:  
-* avr-atmega128rfa1.json
-* avr-atmega328p.json
+Available targets and appropriate features:
+
+|         target         |    feature    |
+| :--------------------: | :-----------: |
+| avr-atmega128rfa1.json | atmega128rfa1 |
+|  avr-atmega328p.json   |  atmega328p   |
 
 ### SIGNALS
 
-each request must end with ';' symbol
+Each request must end with ';' symbol
 
 |    Signal type    |       Request       |                      Response                       |
 | :---------------: | :-----------------: | :-------------------------------------------------: |
@@ -36,4 +39,4 @@ each request must end with ';' symbol
 \*(4) the first 4 bytes - time in opened position, the second 4 bytes - time in closed position  
 \*(5) the first 4 bytes - time to open, the second 4 bytes - time to close
 
-#### presentation avaialble at https://nikbel3476.github.io/avr-window
+#### Presentation avaialble at <https://nikbel3476.github.io/avr-window>

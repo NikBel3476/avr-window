@@ -9,6 +9,10 @@
             ],
             "label": "build",
             "args": [
+                "--target",
+                "avr-${input:targetList}.json",
+                "--features",
+                "${input:targetList}",
                 "--release"
             ]
         },
@@ -17,11 +21,11 @@
             "command": "avrdude",
             "label": "flush",
             "args": [
-                "-patmega128rfa1",
-                "-cusbasp",
-                "-Pusb",
+                "-p${input:targetList}",
+                "-carduino",
+                "-P/dev/ttyUSB0",
                 "-b57600",
-                "-Uflash:w:target/avr-atmega128rfa1/release/avr_window.elf:e"
+                "-Uflash:w:target/avr-${input:targetList}/release/avr_window.elf:e"
             ]
         },
         {
@@ -49,6 +53,17 @@
                 "--",
                 "--emit",
                 "asm"
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "targetList",
+            "type": "pickString",
+            "description": "MCU target",
+            "options": [
+                "atmega328p",
+                "atmega128rfa1"
             ]
         }
     ]

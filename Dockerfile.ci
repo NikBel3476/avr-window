@@ -1,5 +1,7 @@
 FROM rust:latest
 
+ARG target
+
 RUN useradd -m avr-rust
 
 # Install dependencies
@@ -18,4 +20,4 @@ COPY --chown=avr-rust:avr-rust . /usr/src/avr_window
 WORKDIR /usr/src/avr_window
 ENV AVR_CPU_FREQUENCY_HZ=16000000
 
-CMD ["cargo", "build", "--release"]
+CMD ["cargo", "build", "--target", "avr-${target}.json", "--features", "${target}", "--release"]
