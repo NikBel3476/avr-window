@@ -1,14 +1,18 @@
 # Avr window opener project
 
-this crate can be used only for atmega128\* or atmega2560 mcu based boards
+this crate can be used only for atmega128rfa1 or atmega328p mcu based boards
 
 ### Compile the crate to an ELF executable.
 
-cargo build -Z build-std=core --target avr-atmega128rfa1.json --release
+cargo build --target \<target\> --release
+
+available targets:  
+* avr-atmega128rfa1.json
+* avr-atmega328p.json
 
 ### SIGNALS
 
-each request must end with ';' char
+each request must end with ';' symbol
 
 |    Signal type    |       Request       |                      Response                       |
 | :---------------: | :-----------------: | :-------------------------------------------------: |
